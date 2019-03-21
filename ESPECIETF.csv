@@ -1,10 +1,15 @@
 ﻿Número;Especie;Emision;Vencimiento;Cupon;Pago;Cotización Obligatoria;
-1;TFIT06110919;11-sep-13;11-sep-19;7.00%;1;;TFI
-2;TFIT15240720;24-jul-05;24-jul-20;11.00%;1;Cotización Obligatoria;TFI
-3;TFIT10040522;4-may-12;4-may-22;7.00%;1;Cotización Obligatoria;TFI
-4;TFIT16240724;24-jul-08;24-jul-24;10.00%;1;Cotización Obligatoria;TFI
-5;TFIT08261125;26-nov-17;26-nov-25;6.25%;1;;TFI
-6;TFIT15260826;26-ago-11;26-ago-26;7.50%;1;Cotización Obligatoria;TFI
-7;TFIT16280428;28-abr-12;28-abr-28;6.00%;1;Cotización Obligatoria;TFI
-8;TFIT16180930;18-sep-14;18-sep-30;7.75%;1;Cotización Obligatoria;TFI
-9;TFIT16300632;30-jun-16;30-jun-32;7.00%;1;;TFI
+1;TFIT06110919;11/09/2013;11/09/2019;7.00%;1;;TFI
+2;TFIT15240720;24/07/2005;24/07/2020;11.00%;1;Cotización Obligatoria;TFI
+3;TFIT10040522;4/05/2012;4/05/2022;7.00%;1;Cotización Obligatoria;TFI
+4;TFIT16240724;24/07/2008;24/07/2024;10.00%;1;Cotización Obligatoria;TFI
+5;TFIT08261125;26/11/2017;26/11/2025;6.25%;1;;TFI
+6;TFIT15260826;26/08/2011;26/08/2026;7.50%;1;Cotización Obligatoria;TFI
+7;TFIT16280428;28/04/2012;28/04/2028;6.00%;1;Cotización Obligatoria;TFI
+8;TFIT16180930;18/09/2014;18/09/2030;7.75%;1;Cotización Obligatoria;TFI
+9;TFIT16300632;30/06/2016;30/06/2032;7.00%;1;;TFI
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+;;;;;;;
