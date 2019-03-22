@@ -13186,6 +13186,7 @@ div#notebook {
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">/%m/%Y&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">trunc</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">10.</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">num</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.</span><span class="o">**</span><span class="n">n</span>
+    
 <span class="k">def</span> <span class="nf">prev_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Calculates the date of the previous payment&#39;&#39;&#39;</span>
     <span class="n">date_Ant</span><span class="o">=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
@@ -13220,9 +13221,6 @@ div#notebook {
         <span class="n">Dmac</span><span class="o">+=</span><span class="p">(</span><span class="n">pago</span><span class="p">)</span><span class="o">*</span><span class="n">peso</span>
         <span class="n">div</span><span class="o">+=</span><span class="n">peso</span>
         <span class="n">pay_year</span><span class="o">+=</span><span class="mi">1</span>
-
-    <span class="n">xw</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="s1">&#39;A2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">=</span><span class="n">div</span>
-    <span class="c1">#div=PSucio(date_Ven,today,cupon,tasa)</span>
     <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">Dmac</span><span class="o">/</span><span class="n">div</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">PSucio</span><span class="p">(</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">cupon</span><span class="p">,</span><span class="n">tasa</span><span class="p">):</span>
@@ -13241,15 +13239,18 @@ div#notebook {
         <span class="k">if</span> <span class="n">Dias</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>  <span class="k">continue</span>
         <span class="n">n</span><span class="o">=</span><span class="p">(</span><span class="n">Dias</span><span class="o">/</span><span class="mf">365.</span><span class="p">)</span>
         <span class="n">vp1</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span><span class="o">/</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">suma</span><span class="o">+=</span><span class="n">vp1</span>
-        
+        <span class="n">suma</span><span class="o">+=</span><span class="n">vp1</span>        
     <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">suma</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">Dias</span><span class="p">)</span>
+
 <span class="k">def</span> <span class="nf">interests</span><span class="p">(</span><span class="n">cupon</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">column</span><span class="p">):</span>
     <span class="n">fut</span><span class="o">=</span><span class="mf">0.</span>
     <span class="k">if</span> <span class="n">column</span><span class="o">==</span><span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="n">fut</span><span class="o">=</span><span class="mf">1.</span>
     <span class="sd">&#39;&#39;&#39;Calculates the interests of the bond&#39;&#39;&#39;</span>
     <span class="n">date_Ant</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(((</span><span class="n">cupon</span><span class="p">)</span><span class="o">*</span><span class="mf">100.</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="n">today</span><span class="o">-</span><span class="n">date_Ant</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">-</span><span class="n">fut</span><span class="p">)</span>
+
+<span class="sd">&#39;&#39;&#39;Buttons and widgets&#39;&#39;&#39;</span>
+
 <span class="n">a</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
     <span class="n">value</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tasa Real:&#39;</span><span class="p">,</span>
@@ -13306,15 +13307,17 @@ div#notebook {
 <span class="c1"># nbi:hide_in</span>
 <span class="k">def</span> <span class="nf">In</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">):</span>
     <span class="n">Tasa</span><span class="o">=</span><span class="n">Tasa</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
     <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">Bono</span><span class="p">)</span>
-    <span class="c1">#print(df.iloc[index])</span>
     <span class="n">Emision</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Vencimiento</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Cupon</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cupon&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">100.</span>
     <span class="n">Hoy</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="c1">#pd.Timestamp(&#39;2019-03-08&#39;)#</span>
+    
+    <span class="c1">#print(df.iloc[index])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Días al vencimiento&quot;</span><span class="p">,(</span><span class="n">Vencimiento</span><span class="o">-</span><span class="n">Hoy</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">)</span>
+    
     <span class="n">Valor_Nominal</span><span class="o">=</span><span class="mi">100000</span>
     <span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Dias</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
     <span class="n">Pago_Anterior</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
@@ -13378,21 +13381,24 @@ div#notebook {
 <span class="c1"># nbi:hide_in</span>
 <span class="k">def</span> <span class="nf">In2</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Futuro</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">):</span>
     <span class="n">Tasa</span><span class="o">=</span><span class="n">Tasa</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Futuro</span><span class="p">)</span>
     <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">Bono</span><span class="p">)</span>
     <span class="c1">#print(df.iloc[index])</span>
     <span class="n">Emision</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Vencimiento</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Cupon</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cupon&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">100.</span>
+    <span class="n">Valor_Nominal</span><span class="o">=</span><span class="mi">100000</span>
+    
     <span class="n">Hoy</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="c1">#pd.Timestamp(&#39;2019-03-08&#39;)#</span>
     <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">Futuro</span><span class="p">)</span>  
+    
     <span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Dias</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
-    <span class="n">Valor_Nominal</span><span class="o">=</span><span class="mi">100000</span>
     <span class="n">Pago_Anterior</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Pago_Siguiente</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span>
     <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">Precio_Sucio</span><span class="o">-</span><span class="n">Intereses</span>
     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Futuro</span><span class="p">)</span>
     
     
     <span class="n">test</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Días al vencimiento&quot;</span><span class="p">:[</span><span class="n">Dias</span><span class="p">],</span>
