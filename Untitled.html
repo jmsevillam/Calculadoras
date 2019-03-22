@@ -13219,46 +13219,13 @@ div#notebook {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="k">def</span> <span class="nf">trunc</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">10.</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">num</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.</span><span class="o">**</span><span class="n">n</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="nbinteract-hide_in
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="k">def</span> <span class="nf">prev_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Calculates the date of the previous payment&#39;&#39;&#39;</span>
     <span class="n">date_Ant</span><span class="o">=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">((</span><span class="n">date_Ant</span><span class="o">-</span><span class="n">today</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">date_Ant</span><span class="o">=</span><span class="n">date_Ant</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">date_Ant</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="nbinteract-hide_in
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="k">def</span> <span class="nf">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Calculates the date of the next payment&#39;&#39;&#39;</span>
     <span class="n">date_Next</span><span class="o">=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -13268,23 +13235,7 @@ div#notebook {
         <span class="k">if</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="o">&lt;=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">month</span><span class="p">:</span>
             <span class="n">date_Next</span><span class="o">=</span><span class="n">date_Next</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">date_Next</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="nbinteract-hide_in
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="k">def</span> <span class="nf">Duration</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">cupon</span><span class="p">,</span><span class="n">tasa</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Calculates the Duration of the bond&#39;&#39;&#39;</span>
     <span class="n">Dmac</span><span class="o">=</span><span class="mf">0.</span>
@@ -13306,23 +13257,7 @@ div#notebook {
     <span class="n">xw</span><span class="o">.</span><span class="n">Range</span><span class="p">(</span><span class="s1">&#39;A2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="o">=</span><span class="n">div</span>
     <span class="c1">#div=PSucio(date_Ven,today,cupon,tasa)</span>
     <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">Dmac</span><span class="o">/</span><span class="n">div</span><span class="p">)</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="nbinteract-hide_in
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="k">def</span> <span class="nf">PSucio</span><span class="p">(</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">cupon</span><span class="p">,</span><span class="n">tasa</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Calculates the price &quot;Sucio&quot;&#39;&#39;&#39;</span>
     <span class="n">date_Next</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
@@ -13342,23 +13277,6 @@ div#notebook {
         <span class="n">suma</span><span class="o">+=</span><span class="n">vp1</span>
         
     <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">suma</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">Dias</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="nbinteract-hide_in
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="k">def</span> <span class="nf">interests</span><span class="p">(</span><span class="n">cupon</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">column</span><span class="p">):</span>
     <span class="n">fut</span><span class="o">=</span><span class="mf">0.</span>
     <span class="k">if</span> <span class="n">column</span><span class="o">==</span><span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="n">fut</span><span class="o">=</span><span class="mf">1.</span>
@@ -13397,23 +13315,6 @@ div#notebook {
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Futuros:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="nbinteract-hide_in
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
 <span class="n">a2</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
     <span class="n">value</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tasa Real:&#39;</span><span class="p">,</span>
@@ -13593,66 +13494,6 @@ div#notebook {
 
 </div>
 
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">termcolor</span> <span class="k">import</span> <span class="n">colored</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">colored</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">),</span> <span class="n">colored</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">))</span>
-<span class="nb">print</span> <span class="p">(</span><span class="n">colored</span><span class="p">(</span><span class="s2">&quot;hello red world&quot;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-15-4b077ac55a18&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">from</span> termcolor <span class="ansi-green-intense-fg ansi-bold">import</span> colored
-<span class="ansi-green-fg">      2</span> print <span class="ansi-yellow-intense-fg ansi-bold">(</span>colored<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;hello&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;red&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> colored<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#39;world&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;green&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-<span class="ansi-green-fg">      3</span> print <span class="ansi-yellow-intense-fg ansi-bold">(</span>colored<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;hello red world&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;red&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
-
-<span class="ansi-red-intense-fg ansi-bold">ModuleNotFoundError</span>: No module named &#39;termcolor&#39;</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 
