@@ -13156,7 +13156,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="https://www.credicorpcapital.com/img/Logo.png" alt="image"></p>
-
+<h1 id="Calculadoras">Calculadoras<a class="anchor-link" href="#Calculadoras">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -13398,7 +13398,7 @@ div#notebook {
     <span class="sd">&#39;&#39;&#39;Calculates the price &quot;Sucio&quot;&#39;&#39;&#39;</span>
     <span class="n">date_Next</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
     <span class="n">date_Cupon</span><span class="o">=</span><span class="n">date_Ven</span>
-    <span class="n">year</span><span class="o">=</span><span class="n">date_Next</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">year</span><span class="o">=</span><span class="n">date_Next</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span>
     <span class="n">suma</span><span class="o">=</span><span class="mf">0.</span>
     <span class="n">bic</span><span class="o">=</span><span class="mf">0.</span>
     <span class="k">while</span> <span class="n">year</span><span class="o">&lt;=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">year</span><span class="p">:</span>
@@ -13406,12 +13406,13 @@ div#notebook {
         <span class="k">if</span> <span class="n">year</span><span class="o">==</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">year</span><span class="p">:</span> <span class="n">cupon</span><span class="o">+=</span><span class="mi">1</span>
         <span class="n">date_Cupon</span><span class="o">=</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">)</span>
         <span class="n">year</span><span class="o">+=</span><span class="mi">1</span>
-        <span class="n">Dias</span><span class="o">=</span><span class="p">(</span><span class="n">date_Cupon</span><span class="o">-</span><span class="n">today</span><span class="p">)</span><span class="o">.</span><span class="n">days</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">bic</span>
+        <span class="n">Dias</span><span class="o">=</span><span class="p">((</span><span class="n">date_Cupon</span><span class="o">-</span><span class="n">today</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">-</span><span class="n">bic</span>
         <span class="k">if</span> <span class="n">Dias</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>  <span class="k">continue</span>
         <span class="n">n</span><span class="o">=</span><span class="p">(</span><span class="n">Dias</span><span class="o">/</span><span class="mf">365.</span><span class="p">)</span>
-        <span class="n">vp1</span><span class="o">=</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span><span class="o">/</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="n">vp1</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span><span class="o">/</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span><span class="mi">3</span><span class="p">)</span>
         <span class="n">suma</span><span class="o">+=</span><span class="n">vp1</span>
-    <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">suma</span><span class="p">),</span><span class="n">Dias</span>
+        
+    <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">suma</span><span class="p">),</span><span class="nb">int</span><span class="p">(</span><span class="n">Dias</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13462,6 +13463,11 @@ div#notebook {
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Nominal:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
+<span class="n">c</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Futuros:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13488,10 +13494,12 @@ div#notebook {
     <span class="n">Emision</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Vencimiento</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Cupon</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cupon&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="n">Hoy</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+    <span class="n">Hoy</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="c1">#pd.Timestamp(&#39;2019-03-08&#39;)#pd.to_datetime(date.today())</span>
     <span class="n">Valor_Nominal</span><span class="o">=</span><span class="mi">100000</span>
-    <span class="n">Psucio</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Días al vencimiento&quot;</span><span class="p">,(</span><span class="n">Vencimiento</span><span class="o">-</span><span class="n">Hoy</span><span class="p">)</span><span class="o">.</span><span class="n">days</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Psucio</span><span class="p">,</span><span class="n">Dias</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">Hoy</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Días al vencimiento&quot;</span><span class="p">,</span><span class="n">Dias</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vencimiento&quot;</span><span class="p">,</span><span class="n">Vencimiento</span><span class="o">.</span><span class="n">day</span><span class="p">,</span><span class="n">Vencimiento</span><span class="o">.</span><span class="n">month</span><span class="p">,</span><span class="n">Vencimiento</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pago Anterior&quot;</span><span class="p">,</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pago Siguiente&quot;</span><span class="p">,</span><span class="n">next_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cupon&quot;</span><span class="p">,</span><span class="n">Cupon</span><span class="p">)</span>
@@ -13560,7 +13568,7 @@ div#notebook {
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precio Limpio&quot;</span><span class="p">,</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nominal&quot;</span><span class="p">,</span><span class="n">Nominal</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valor Giro&quot;</span><span class="p">,(</span><span class="n">Psucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="p">)</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">],</span><span class="n">Tasa</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b</span><span class="p">);</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">],</span><span class="n">Tasa</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b</span><span class="p">,</span><span class="n">Futuro</span><span class="o">=</span><span class="n">c</span><span class="p">);</span>
 </pre></div>
 
     </div>
