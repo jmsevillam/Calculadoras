@@ -13435,10 +13435,7 @@ div#notebook {
     <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datos&#39;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="c1">#display(data)</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
-    <span class="k">with</span> <span class="n">out</span><span class="p">:</span>
-        <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">out</span><span class="p">]))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
     
 <span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">],</span><span class="n">Tasa</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b</span><span class="p">);</span>
 </pre></div>
