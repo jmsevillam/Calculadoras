@@ -13229,13 +13229,13 @@ div#notebook {
     <span class="n">bic</span><span class="o">=</span><span class="mf">0.</span>
     <span class="n">n</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">while</span> <span class="n">year</span><span class="o">&lt;=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">year</span><span class="p">:</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">year</span><span class="o">%</span><span class="k">4</span>==0 and year%100!=0 and today.month&gt;2) or (year%4==0 and year%100!=0 and today.month==2 and today.day&gt;28): bic+=1
         <span class="k">if</span> <span class="n">year</span><span class="o">==</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">year</span><span class="p">:</span> <span class="n">cupon</span><span class="o">+=</span><span class="mi">1</span>
         
         <span class="n">date_Cupon</span><span class="o">=</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">)</span>
         <span class="n">year</span><span class="o">+=</span><span class="mi">1</span>
         <span class="c1">#print(date_prev,today)</span>
         <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">year</span><span class="o">%</span><span class="k">4</span>==0 and year%100!=0 and today.month&gt;2) or (year%4==0 and year%100!=0 and today.month==2 and today.day&gt;28): bic+=1
             <span class="n">Dias</span><span class="o">=</span><span class="p">((</span><span class="n">date_Next</span><span class="o">-</span><span class="n">today</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">-</span><span class="n">bic</span>
             <span class="n">n</span><span class="o">=</span><span class="p">(</span><span class="n">Dias</span><span class="o">/</span><span class="mf">365.</span><span class="p">)</span>
         <span class="n">vp1</span><span class="o">=</span><span class="n">trunc</span><span class="p">(</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span><span class="o">/</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span><span class="mi">3</span><span class="p">)</span>
@@ -13683,6 +13683,40 @@ div#notebook {
 
 </div>
 
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
