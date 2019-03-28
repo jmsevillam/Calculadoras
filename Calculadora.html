@@ -13175,6 +13175,8 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">Layout</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
@@ -13285,64 +13287,99 @@ div#notebook {
 
 <span class="sd">&#39;&#39;&#39;Buttons and widgets&#39;&#39;&#39;</span>
 
+<span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;75pt&#39;</span><span class="p">}</span>
+<span class="n">Layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;50%&#39;</span><span class="p">)</span><span class="c1">#, height=&#39;80px&#39;)</span>
+
+<span class="n">Bono</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">]),</span>
+    <span class="n">style</span> <span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Bono:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
 <span class="n">a</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
     <span class="n">value</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tasa Real:&#39;</span><span class="p">,</span>
+    <span class="n">style</span> <span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tasa Compra:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">b</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span> <span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Nominal:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">c</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Futuros:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">a2</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tasa Real:&#39;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mf">7.5</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span> <span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tasa Venta:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">b2</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span> <span class="n">style</span> <span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;T+:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">c2</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span> <span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Futuros:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 
 <span class="n">a3</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mf">100.</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mf">100.</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span><span class="n">style</span> <span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Precio Limpio:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">b3</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span> <span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Nominal:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">c4</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span> <span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Futuros:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">a4</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mf">100.</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mf">100.</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Precio Limpio:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">b4</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">1000000000</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span> <span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Nominal:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 <span class="n">c4</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">IntText</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>    
+    <span class="n">style</span> <span class="o">=</span> <span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">,</span>
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Futuros:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -13388,8 +13425,6 @@ div#notebook {
     <span class="n">Vencimiento</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Cupon</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cupon&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">100.</span>
     <span class="n">Valor_Nominal</span><span class="o">=</span><span class="mi">100000</span>
-    
-    
     <span class="c1">#Hoy=pd.to_datetime(date.today())#pd.Timestamp(&#39;2019-03-08&#39;)#</span>
     <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">Futuro</span><span class="p">)</span>  
     
@@ -13399,20 +13434,21 @@ div#notebook {
     <span class="n">Pago_Siguiente</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span>
     <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">Precio_Sucio</span><span class="o">-</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
+    
     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
     <span class="n">Dias</span><span class="o">=</span><span class="n">Dias_Vto</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     
-    <span class="k">return</span> <span class="n">Dias</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Pago_Anterior</span><span class="p">,</span><span class="n">Pago_Siguiente</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Intereses</span><span class="p">,</span><span class="n">Precio_Limpio</span><span class="p">,</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Hoy</span>
+    <span class="n">ret</span><span class="o">=</span><span class="p">[</span><span class="n">Dias</span><span class="p">,</span><span class="n">Pago_Anterior</span><span class="p">,</span><span class="n">Pago_Siguiente</span><span class="p">,</span><span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Intereses</span><span class="p">,</span><span class="n">Precio_Limpio</span><span class="p">,</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Hoy</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">ret</span>
 
-<span class="k">def</span> <span class="nf">In</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">):</span>
-    <span class="n">Tasa</span><span class="o">=</span><span class="n">Tasa</span><span class="o">/</span><span class="mf">100.</span>
+<span class="k">def</span> <span class="nf">In</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Compra</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">):</span>
+    <span class="n">Tasa</span><span class="o">=</span><span class="n">Tasa_Compra</span><span class="o">/</span><span class="mf">100.</span>
     <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">Bono</span><span class="p">)</span>
     <span class="n">Emision</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Vencimiento</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Cupon</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cupon&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="n">Hoy</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span><span class="c1">#pd.Timestamp(&#39;2019-03-08&#39;)#</span>
-    <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">-</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
-    <span class="c1">#print(df.iloc[index])</span>
+    <span class="n">Hoy</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+    <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     <span class="n">Dias</span><span class="o">=</span><span class="n">Dias_Vto</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Duracion</span><span class="o">=</span><span class="n">Duration</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
     
@@ -13424,26 +13460,29 @@ div#notebook {
     <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">Precio_Sucio</span><span class="o">-</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
     
-    <span class="n">Dias2</span><span class="p">,</span><span class="n">Vencimiento2</span><span class="p">,</span><span class="n">Pago_Anterior2</span><span class="p">,</span><span class="n">Pago_Siguiente2</span><span class="p">,</span><span class="n">Cupon2</span><span class="p">,</span><span class="n">Precio_Sucio2</span><span class="p">,</span><span class="n">Intereses2</span><span class="p">,</span><span class="n">Precio_Limpio2</span><span class="p">,</span><span class="n">Valor_Giro2</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">,</span><span class="n">Hoy2</span><span class="o">=</span><span class="n">In2</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">)</span>
+    <span class="n">Dias2</span><span class="p">,</span><span class="n">Pago_Anterior2</span><span class="p">,</span><span class="n">Pago_Siguiente2</span><span class="p">,</span><span class="n">Precio_Sucio2</span><span class="p">,</span><span class="n">Intereses2</span><span class="p">,</span><span class="n">Precio_Limpio2</span><span class="p">,</span><span class="n">Valor_Giro2</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">,</span><span class="n">Hoy2</span><span class="o">=</span><span class="n">In2</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">)</span>
     
-    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fecha&quot;</span><span class="p">,</span><span class="s2">&quot;Días al vencimiento&quot;</span><span class="p">,</span><span class="s2">&quot;Vencimiento&quot;</span><span class="p">,</span><span class="s2">&quot;Pago Anterior&quot;</span><span class="p">,</span><span class="s2">&quot;Pago Siguiente&quot;</span><span class="p">,</span><span class="s2">&quot;Cupon&quot;</span><span class="p">,</span><span class="s2">&quot;Precio Sucio&quot;</span><span class="p">,</span><span class="s2">&quot;Intereses&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;Precio Limpio&quot;</span><span class="p">,</span><span class="s2">&quot;Valor Giro&quot;</span><span class="p">,</span><span class="s2">&quot;Duración&quot;</span><span class="p">]</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fecha de Liquidación&quot;</span><span class="p">,</span><span class="s2">&quot;Días al vencimiento&quot;</span><span class="p">,</span><span class="s2">&quot;Vencimiento&quot;</span><span class="p">,</span><span class="s2">&quot;Pago Anterior&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;Pago Siguiente&quot;</span><span class="p">,</span><span class="s2">&quot;Cupon %&quot;</span><span class="p">,</span><span class="s2">&quot;Precio Sucio&quot;</span><span class="p">,</span><span class="s2">&quot;Intereses&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Precio Limpio&quot;</span><span class="p">,</span><span class="s2">&quot;Nominal&quot;</span><span class="p">,</span><span class="s2">&quot;Valor Giro&quot;</span><span class="p">,</span><span class="s2">&quot;Duración&quot;</span><span class="p">]</span>
     <span class="n">test2</span><span class="o">=</span><span class="p">[[</span><span class="n">Hoy</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span><span class="n">Hoy2</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)],[</span><span class="n">Dias</span><span class="p">,</span><span class="n">Dias2</span><span class="p">],</span>
-   <span class="p">[</span><span class="n">Vencimiento</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span><span class="n">Vencimiento2</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)],</span>
+   <span class="p">[</span><span class="n">Vencimiento</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span><span class="n">Vencimiento</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)],</span>
     <span class="p">[</span><span class="n">Pago_Anterior</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span><span class="n">Pago_Anterior2</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)],</span>
     <span class="p">[</span><span class="n">Pago_Siguiente</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span><span class="n">Pago_Siguiente2</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)],</span>
-    <span class="p">[</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Cupon2</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">Cupon</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">Cupon</span><span class="o">*</span><span class="mi">100</span><span class="p">],</span>
     <span class="p">[</span><span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Precio_Sucio2</span><span class="p">],</span>
     <span class="p">[</span><span class="n">Intereses</span><span class="p">,</span><span class="n">Intereses2</span><span class="p">],</span>
     <span class="p">[</span><span class="n">Precio_Limpio</span><span class="p">,</span><span class="n">Precio_Limpio2</span><span class="p">],</span>
-     <span class="p">[</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="n">Valor_Giro2</span><span class="p">],</span>
+     <span class="p">[</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Nominal</span><span class="p">],</span>      
+     <span class="p">[(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="mi">1000</span><span class="p">),(</span><span class="n">Valor_Giro2</span><span class="o">*</span><span class="mi">1000</span><span class="p">)],</span>
     <span class="p">[</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">]]</span>
     
+    <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="c1">#display(data)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
     
-<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">],</span><span class="n">Tasa</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">b2</span><span class="p">,</span><span class="n">Futuro</span><span class="o">=</span><span class="n">c2</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b</span><span class="p">);</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Compra</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="o">=</span><span class="n">a2</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">b2</span><span class="p">,</span><span class="n">Futuro</span><span class="o">=</span><span class="n">c2</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b</span><span class="p">);</span>
 </pre></div>
 
     </div>
@@ -13528,7 +13567,7 @@ div#notebook {
     <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datos&#39;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
 
     <span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In4</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">],</span><span class="n">Limpio</span><span class="o">=</span><span class="n">a3</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b3</span><span class="p">);</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In4</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">Bono</span><span class="p">,</span><span class="n">Limpio</span><span class="o">=</span><span class="n">a3</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b3</span><span class="p">);</span>
 </pre></div>
 
     </div>
@@ -13605,7 +13644,7 @@ div#notebook {
     <span class="p">}</span>
     <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datos&#39;</span><span class="p">],</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In4</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">],</span><span class="n">Limpio</span><span class="o">=</span><span class="n">a4</span><span class="p">,</span><span class="n">Futuro</span><span class="o">=</span><span class="n">c4</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b4</span><span class="p">);</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In4</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">Bono</span><span class="p">,</span><span class="n">Limpio</span><span class="o">=</span><span class="n">a4</span><span class="p">,</span><span class="n">Futuro</span><span class="o">=</span><span class="n">c4</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b4</span><span class="p">);</span>
 </pre></div>
 
     </div>
@@ -13630,6 +13669,57 @@ div#notebook {
 
 </div>
 
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
