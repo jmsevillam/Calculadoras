@@ -13329,7 +13329,6 @@ div#notebook {
         <span class="n">pn</span><span class="o">=</span><span class="p">(</span><span class="n">an</span><span class="o">+</span><span class="n">bn</span><span class="p">)</span><span class="o">/</span><span class="mf">2.</span>
         <span class="n">Test1</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">an</span><span class="p">)</span><span class="o">-</span><span class="n">Limpio</span>
         <span class="n">Test2</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">pn</span><span class="p">)</span><span class="o">-</span><span class="n">Limpio</span>
-        <span class="c1">#print(&#39;aa&#39;,Test1+Sucio,Test2+Sucio,Sucio,Intereses)</span>
         <span class="k">if</span><span class="p">((</span><span class="n">Test1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Test2</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
             <span class="n">an</span><span class="o">=</span><span class="n">pn</span>
         <span class="k">else</span><span class="p">:</span>
