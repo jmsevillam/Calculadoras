@@ -13175,14 +13175,15 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">nbinteract</span> <span class="k">as</span> <span class="nn">nbi</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">Layout</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+
 <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/jmsevillam/Calculadoras/master/ESPECIETF.csv&#39;</span><span class="p">,</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">/%m/%Y&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">/%m/%Y&#39;</span><span class="p">)</span>
+
 <span class="k">def</span> <span class="nf">trunc</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">10.</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">num</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.</span><span class="o">**</span><span class="n">n</span>
     
@@ -13221,7 +13222,7 @@ div#notebook {
         <span class="n">Dmac</span><span class="o">+=</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">peso</span>
         <span class="n">div</span><span class="o">+=</span><span class="n">peso</span>
         <span class="n">pay_year</span><span class="o">+=</span><span class="mi">1</span>
-    <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">Dmac</span><span class="o">/</span><span class="n">div</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">Dmac</span><span class="o">/</span><span class="n">div</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">PSucio</span><span class="p">(</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">cupon</span><span class="p">,</span><span class="n">tasa</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Calculates the price &quot;Sucio&quot;&#39;&#39;&#39;</span>
@@ -13240,13 +13241,65 @@ div#notebook {
         <span class="c1">#print(date_prev,today)</span>
         <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">year</span><span class="o">%</span><span class="k">4</span>==0 and year%100!=0 and today.month&gt;2) or (year%4==0 and year%100!=0 and today.month==2 and today.day&gt;28): bic+=1
-            <span class="n">Dias</span><span class="o">=</span><span class="p">((</span><span class="n">date_Next</span><span class="o">-</span><span class="n">today</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">-</span><span class="n">bic</span>
+            <span class="n">Dias</span><span class="o">=</span><span class="p">((</span><span class="n">date_Next</span><span class="o">-</span><span class="n">today</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">bic</span>
             <span class="n">n</span><span class="o">=</span><span class="p">(</span><span class="n">Dias</span><span class="o">/</span><span class="mf">365.</span><span class="p">)</span>
-        <span class="n">vp1</span><span class="o">=</span><span class="n">trunc</span><span class="p">(</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span><span class="o">/</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">vp1</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span><span class="o">/</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span><span class="mi">6</span><span class="p">)</span>
         <span class="n">suma</span><span class="o">+=</span><span class="n">vp1</span>        
         <span class="n">n</span><span class="o">+=</span><span class="mf">1.</span>
         
     <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">suma</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">days</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">date2</span><span class="o">-</span><span class="n">date1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="o">=</span><span class="n">date2</span><span class="p">,</span><span class="n">date1</span>
+    <span class="n">year</span><span class="o">=</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">bic</span><span class="o">=</span><span class="mf">0.</span>
+    
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="n">date2</span><span class="o">.</span><span class="n">year</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">year</span><span class="o">%</span><span class="k">4</span>==0 and year%100!=0) or (year%4==0 and year%400==0):
+            <span class="k">if</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span><span class="o">==</span><span class="n">date2</span><span class="o">.</span><span class="n">year</span> <span class="ow">and</span> <span class="n">date1</span><span class="o">.</span><span class="n">month</span><span class="o">&lt;=</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">date2</span><span class="o">.</span><span class="n">month</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">):</span>
+                <span class="n">bic</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">date2</span><span class="o">.</span><span class="n">month</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">):</span>
+                <span class="n">bic</span><span class="o">+=</span><span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">date2</span><span class="o">-</span><span class="n">date1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">-</span><span class="n">bic</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">PLimpio</span><span class="p">(</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">cupon</span><span class="p">,</span><span class="n">tasa</span><span class="p">):</span>
+    
+    <span class="n">date_prev</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
+    <span class="n">Dias</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_prev</span><span class="p">)</span>
+    <span class="n">Interes</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cupon</span><span class="o">*</span><span class="n">Dias</span><span class="o">/</span><span class="mf">365.</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    
+    <span class="n">acum</span><span class="o">=</span><span class="mf">0.</span>
+    
+    <span class="n">days_prev</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">date_prev</span><span class="p">,</span> <span class="n">today</span><span class="p">)</span>
+    <span class="n">date_next</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
+    <span class="n">days_next</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">date_next</span><span class="p">,</span><span class="n">today</span><span class="p">)</span>
+    
+    <span class="n">cupon</span><span class="o">=</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span>
+    
+    <span class="n">date_Cupon</span><span class="o">=</span><span class="n">date_next</span>
+    
+    <span class="k">if</span> <span class="n">date_Ven</span><span class="o">.</span><span class="n">year</span><span class="o">==</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">year</span><span class="p">:</span> <span class="n">cupon</span><span class="o">+=</span><span class="mi">100</span>
+    
+    <span class="n">m</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cupon</span><span class="o">/</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">((</span><span class="n">days_next</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span><span class="p">)),</span><span class="mi">6</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">days_prev</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span>
+    
+    <span class="n">acum</span><span class="o">+=</span><span class="n">m</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        
+        <span class="n">date_Cupon</span><span class="o">=</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">year</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">date_Ven</span><span class="o">==</span><span class="n">date_Cupon</span><span class="p">:</span> <span class="n">cupon</span><span class="o">+=</span><span class="mi">100</span>
+        <span class="n">days_next</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">date_Cupon</span><span class="p">,</span><span class="n">today</span><span class="p">)</span>
+        <span class="n">n</span><span class="o">=</span><span class="n">days_next</span><span class="o">/</span><span class="mf">365.</span>
+        <span class="n">acum</span> <span class="o">+=</span><span class="nb">round</span><span class="p">((</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="n">cupon</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
+    
+    <span class="n">r</span><span class="o">=</span><span class="n">trunc</span><span class="p">(</span><span class="n">acum</span><span class="p">)</span>
+    <span class="n">PL</span><span class="o">=</span><span class="n">trunc</span><span class="p">((</span><span class="n">r</span><span class="o">/</span><span class="mf">100.</span><span class="o">-</span><span class="n">Interes</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">PL</span>
+    
 
 <span class="k">def</span> <span class="nf">Dias_Vto</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">):</span>
     <span class="n">date_Next</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
@@ -13258,27 +13311,24 @@ div#notebook {
     <span class="n">Dias</span><span class="o">=</span><span class="p">((</span><span class="n">date_Ven</span><span class="o">-</span><span class="n">today</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">-</span><span class="n">bic</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">Dias</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">interests</span><span class="p">(</span><span class="n">cupon</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">column</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">interests</span><span class="p">(</span><span class="n">cupon</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">):</span>
     <span class="n">fut</span><span class="o">=</span><span class="mf">0.</span>
     <span class="k">if</span> <span class="n">column</span><span class="o">==</span><span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="n">fut</span><span class="o">=</span><span class="mf">1.</span>
     <span class="sd">&#39;&#39;&#39;Calculates the interests of the bond&#39;&#39;&#39;</span>
     <span class="n">date_Ant</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
-    <span class="n">inte</span><span class="o">=</span><span class="p">(((</span><span class="n">cupon</span><span class="p">)</span><span class="o">*</span><span class="mf">100.</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="n">today</span><span class="o">-</span><span class="n">date_Ant</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">fut</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">inte</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
-
+    <span class="n">inte</span><span class="o">=</span><span class="p">(((</span><span class="n">cupon</span><span class="p">)</span><span class="o">*</span><span class="mf">100.</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nb">int</span><span class="p">((</span><span class="n">today</span><span class="o">-</span><span class="n">date_Ant</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">))</span><span class="o">-</span><span class="n">fut</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">inte</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> 
 
 
 <span class="k">def</span> <span class="nf">Tase</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Limpio</span><span class="p">):</span>
-    <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
-    <span class="n">Sucio</span><span class="o">=</span><span class="n">Limpio</span><span class="o">+</span><span class="n">Intereses</span>
     <span class="n">an</span><span class="o">=</span><span class="mf">0.</span>
     <span class="n">bn</span><span class="o">=</span><span class="mf">1.</span>
-    <span class="n">eps</span><span class="o">=</span><span class="mf">0.000001</span>
-    <span class="n">sucios</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">eps</span><span class="o">=</span><span class="mf">1e-15</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">an</span><span class="o">-</span><span class="n">bn</span><span class="p">)</span><span class="o">&gt;</span><span class="n">eps</span><span class="p">):</span>
         <span class="n">pn</span><span class="o">=</span><span class="p">(</span><span class="n">an</span><span class="o">+</span><span class="n">bn</span><span class="p">)</span><span class="o">/</span><span class="mf">2.</span>
-        <span class="n">Test1</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">an</span><span class="p">)</span><span class="o">-</span><span class="n">Sucio</span>
-        <span class="n">Test2</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">pn</span><span class="p">)</span><span class="o">-</span><span class="n">Sucio</span>
+        <span class="n">Test1</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">an</span><span class="p">)</span><span class="o">-</span><span class="n">Limpio</span>
+        <span class="n">Test2</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">pn</span><span class="p">)</span><span class="o">-</span><span class="n">Limpio</span>
         <span class="c1">#print(&#39;aa&#39;,Test1+Sucio,Test2+Sucio,Sucio,Intereses)</span>
         <span class="k">if</span><span class="p">((</span><span class="n">Test1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Test2</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
             <span class="n">an</span><span class="o">=</span><span class="n">pn</span>
@@ -13463,7 +13513,8 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:left</span>
 <span class="c1"># nbi:hide_in</span>
-<span class="k">def</span> <span class="nf">In2</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">Calcular2</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">):</span>
+
     <span class="n">Tasa</span><span class="o">=</span><span class="n">Tasa</span><span class="o">/</span><span class="mf">100.</span>
     <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">Bono</span><span class="p">)</span>
     <span class="c1">#print(df.iloc[index])</span>
@@ -13474,50 +13525,47 @@ div#notebook {
     <span class="c1">#Hoy=pd.to_datetime(date.today())#pd.Timestamp(&#39;2019-03-08&#39;)#</span>
     <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">Futuro</span><span class="p">)</span>  
     
-
+    <span class="n">Dias</span><span class="o">=</span><span class="n">Dias_Vto</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">Duracion</span><span class="o">=</span><span class="n">Duration</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
     
-    <span class="n">Precio_Sucio</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
+    <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
+    
     <span class="n">Pago_Anterior</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Pago_Siguiente</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
-    
-    <span class="n">Duracion</span><span class="o">=</span><span class="n">Duration</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
-    
-    <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
-    <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">Precio_Sucio</span><span class="o">-</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
-    
-    <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
-    <span class="n">Dias</span><span class="o">=</span><span class="n">Dias_Vto</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
+    <span class="n">Intereses</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">Precio_Sucio</span><span class="o">=</span><span class="n">Precio_Limpio</span><span class="o">+</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
 
+    <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
     
     <span class="n">ret</span><span class="o">=</span><span class="p">[</span><span class="n">Dias</span><span class="p">,</span><span class="n">Pago_Anterior</span><span class="p">,</span><span class="n">Pago_Siguiente</span><span class="p">,</span><span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Intereses</span><span class="p">,</span><span class="n">Precio_Limpio</span><span class="p">,</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Hoy</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">ret</span>
 
-<span class="k">def</span> <span class="nf">In</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Compra</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">):</span>
-    <span class="n">Tasa</span><span class="o">=</span><span class="n">Tasa_Compra</span><span class="o">/</span><span class="mf">100.</span>
+<span class="k">def</span> <span class="nf">Calcular</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Compra</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">):</span>
+    
     <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">Bono</span><span class="p">)</span>
     <span class="n">Emision</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Vencimiento</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Vencimiento&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
     <span class="n">Cupon</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Cupon&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">100.</span>
+    <span class="n">Tasa</span><span class="o">=</span><span class="n">Tasa_Compra</span><span class="o">/</span><span class="mf">100.</span>
     
     <span class="n">Hoy</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
-    <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
     
     <span class="n">Dias</span><span class="o">=</span><span class="n">Dias_Vto</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Duracion</span><span class="o">=</span><span class="n">Duration</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
     
     <span class="n">Valor_Nominal</span><span class="o">=</span><span class="mi">100000</span>
-    <span class="n">Precio_Sucio</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
+    <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
+    
     <span class="n">Pago_Anterior</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Pago_Siguiente</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
-    <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">Precio_Sucio</span><span class="o">-</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
+    <span class="n">Intereses</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">Precio_Sucio</span><span class="o">=</span><span class="n">Precio_Limpio</span><span class="o">+</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
+    
     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
     
-    <span class="n">Dias2</span><span class="p">,</span><span class="n">Pago_Anterior2</span><span class="p">,</span><span class="n">Pago_Siguiente2</span><span class="p">,</span><span class="n">Precio_Sucio2</span><span class="p">,</span><span class="n">Intereses2</span><span class="p">,</span><span class="n">Precio_Limpio2</span><span class="p">,</span><span class="n">Valor_Giro2</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">,</span><span class="n">Hoy2</span><span class="o">=</span><span class="n">In2</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">)</span>
-    
-    <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">Dias</span><span class="o">-=</span><span class="mi">1</span>
+    <span class="n">Dias2</span><span class="p">,</span><span class="n">Pago_Anterior2</span><span class="p">,</span><span class="n">Pago_Siguiente2</span><span class="p">,</span><span class="n">Precio_Sucio2</span><span class="p">,</span><span class="n">Intereses2</span><span class="p">,</span><span class="n">Precio_Limpio2</span><span class="p">,</span><span class="n">Valor_Giro2</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">,</span><span class="n">Hoy2</span><span class="o">=</span><span class="n">Calcular2</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">)</span>
+
     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fecha de Liquidación&quot;</span><span class="p">,</span><span class="s2">&quot;Días al vencimiento&quot;</span><span class="p">,</span><span class="s2">&quot;Vencimiento&quot;</span><span class="p">,</span><span class="s2">&quot;Pago Anterior&quot;</span><span class="p">,</span>
            <span class="s2">&quot;Pago Siguiente&quot;</span><span class="p">,</span><span class="s2">&quot;Cupon %&quot;</span><span class="p">,</span><span class="s2">&quot;Precio Sucio&quot;</span><span class="p">,</span><span class="s2">&quot;Intereses&quot;</span><span class="p">,</span>
           <span class="s2">&quot;Precio Limpio&quot;</span><span class="p">,</span><span class="s2">&quot;Nominal&quot;</span><span class="p">,</span><span class="s2">&quot;Valor Giro&quot;</span><span class="p">,</span><span class="s2">&quot;Duración&quot;</span><span class="p">]</span>
@@ -13533,12 +13581,13 @@ div#notebook {
      <span class="p">[(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="mi">1000</span><span class="p">),(</span><span class="n">Valor_Giro2</span><span class="o">*</span><span class="mi">1000</span><span class="p">)],</span>
     <span class="p">[</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">]]</span>
     
-    <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">))</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="c1">#display(data)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
     
-<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">In</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Compra</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="o">=</span><span class="n">a2</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">b2</span><span class="p">,</span><span class="n">Futuro</span><span class="o">=</span><span class="n">c2</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b</span><span class="p">);</span>
+<span class="n">widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">Calcular</span><span class="p">,</span><span class="n">Bono</span><span class="o">=</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Compra</span><span class="o">=</span><span class="n">a</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="o">=</span><span class="n">a2</span><span class="p">,</span><span class="n">T</span><span class="o">=</span><span class="n">b2</span><span class="p">,</span><span class="n">Futuro</span><span class="o">=</span><span class="n">c2</span><span class="p">,</span><span class="n">Nominal</span><span class="o">=</span><span class="n">b</span><span class="p">);</span>
 </pre></div>
 
     </div>
@@ -13589,20 +13638,15 @@ div#notebook {
     
     <span class="n">Tasa</span><span class="o">=</span><span class="n">Tase</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Limpio</span><span class="p">)</span>
     
-    <span class="n">Duracion</span><span class="o">=</span><span class="n">Duration</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
-    
-    <span class="n">Precio_Sucio</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
+        
+    <span class="n">Duracion</span><span class="o">=</span><span class="n">Duration</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
     <span class="n">Pago_Anterior</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Pago_Siguiente</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
-     
-    <span class="n">Dias</span><span class="o">=</span><span class="n">Dias_Vto</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
-    <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">Precio_Sucio</span><span class="o">-</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
+    <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span>
+    <span class="n">Precio_Sucio</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Limpio</span><span class="o">+</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
+    <span class="n">Dias</span><span class="o">=</span><span class="n">Dias_Vto</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
     
-    <span class="n">Hoy</span><span class="o">=</span><span class="n">Hoy</span><span class="o">+</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
-    <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">Precio_Sucio</span><span class="o">-</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
     
     <span class="n">ret</span><span class="o">=</span><span class="p">[</span><span class="n">Dias</span><span class="p">,</span><span class="n">Pago_Anterior</span><span class="p">,</span><span class="n">Pago_Siguiente</span><span class="p">,</span><span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Intereses</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Hoy</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">ret</span>
@@ -13620,12 +13664,14 @@ div#notebook {
 
 
     <span class="n">Tasa</span><span class="o">=</span><span class="n">Tase</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Precio_Compra</span><span class="p">)</span>
+    
+    
+    
     <span class="n">Duracion</span><span class="o">=</span><span class="n">Duration</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
-    <span class="n">Precio_Sucio</span><span class="o">=</span><span class="n">PSucio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
     <span class="n">Pago_Anterior</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Pago_Siguiente</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Intereses</span><span class="o">=</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span>
-    <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">Precio_Sucio</span><span class="o">-</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
+    <span class="n">Precio_Sucio</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Precio_Compra</span><span class="o">+</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
     <span class="n">Dias</span><span class="o">=</span><span class="n">Dias_Vto</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     
@@ -13649,7 +13695,7 @@ div#notebook {
      <span class="p">[(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="mi">1000</span><span class="p">),(</span><span class="n">Valor_Giro2</span><span class="o">*</span><span class="mi">1000</span><span class="p">)],</span>
     <span class="p">[</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">]]</span>
     
-    <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.3f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="c1">#display(data)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
