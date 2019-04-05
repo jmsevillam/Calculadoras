@@ -13925,7 +13925,9 @@ div#notebook {
     <span class="k">if</span> <span class="n">UVR</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
         <span class="n">UVR</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;valorUVR&#39;</span><span class="p">][</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;fecha&#39;</span><span class="p">][</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;fecha&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">Hoy</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>  
         
-    <span class="n">Valor_Giro</span><span class="o">=</span><span class="n">UVR</span><span class="o">*</span><span class="p">((</span><span class="n">Precio_Limpio</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">+</span><span class="n">cc</span><span class="o">*</span><span class="n">Nominal</span><span class="p">)</span>
+    <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">*</span><span class="mi">1000</span>
+    
+    <span class="n">Valor_Giro</span><span class="o">=</span><span class="n">UVR</span><span class="o">*</span><span class="n">Valor_Giro</span>
     
     <span class="n">ret</span><span class="o">=</span><span class="p">[</span><span class="n">Dias</span><span class="p">,</span><span class="n">Pago_Anterior</span><span class="p">,</span><span class="n">Pago_Siguiente</span><span class="p">,</span><span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Intereses</span><span class="p">,</span><span class="n">Precio_Limpio</span><span class="p">,</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">UVR</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">ret</span>
@@ -13960,7 +13962,9 @@ div#notebook {
     <span class="k">if</span> <span class="n">UVR</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
         <span class="n">UVR</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;valorUVR&#39;</span><span class="p">][</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;fecha&#39;</span><span class="p">][</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;fecha&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">Hoy</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>  
     
-    <span class="n">Valor_Giro</span><span class="o">=</span><span class="n">UVR</span><span class="o">*</span><span class="p">((</span><span class="n">Precio_Limpio</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">+</span><span class="n">cc</span><span class="o">*</span><span class="n">Nominal</span><span class="p">)</span>
+    <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">*</span><span class="mi">1000</span>
+    
+    <span class="n">Valor_Giro</span><span class="o">=</span><span class="n">UVR</span><span class="o">*</span><span class="n">Valor_Giro</span>
    
     <span class="n">Dias2</span><span class="p">,</span><span class="n">Pago_Anterior2</span><span class="p">,</span><span class="n">Pago_Siguiente2</span><span class="p">,</span><span class="n">Precio_Sucio2</span><span class="p">,</span><span class="n">Intereses2</span><span class="p">,</span><span class="n">Precio_Limpio2</span><span class="p">,</span><span class="n">Valor_Giro2</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">,</span><span class="n">UVR2</span><span class="o">=</span><span class="n">Calcular6</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">UVR2</span><span class="p">)</span>
 
@@ -14069,7 +14073,9 @@ div#notebook {
     <span class="k">if</span> <span class="n">UVR</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
         <span class="n">UVR</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;valorUVR&#39;</span><span class="p">][</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;fecha&#39;</span><span class="p">][</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;fecha&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">Hoy</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>    
     
-    <span class="n">Valor_Giro</span><span class="o">=</span><span class="n">UVR</span><span class="o">*</span><span class="p">((</span><span class="n">Limpio</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">+</span><span class="n">cc</span><span class="o">*</span><span class="n">Nominal</span><span class="p">)</span>
+     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">*</span><span class="mi">1000</span>
+    
+    <span class="n">Valor_Giro</span><span class="o">=</span><span class="n">UVR</span><span class="o">*</span><span class="n">Valor_Giro</span>
     
     <span class="n">ret</span><span class="o">=</span><span class="p">[</span><span class="n">Dias</span><span class="p">,</span><span class="n">Pago_Anterior</span><span class="p">,</span><span class="n">Pago_Siguiente</span><span class="p">,</span><span class="n">Precio_Sucio</span><span class="p">,</span><span class="n">Intereses</span><span class="p">,</span><span class="n">Tasa</span><span class="p">,</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="n">Duracion</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">UVR</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">ret</span>
@@ -14100,7 +14106,9 @@ div#notebook {
     <span class="k">if</span> <span class="n">UVR</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
         <span class="n">UVR</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;valorUVR&#39;</span><span class="p">][</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;fecha&#39;</span><span class="p">][</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;fecha&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">Hoy</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">))</span>    
     
-    <span class="n">Valor_Giro</span><span class="o">=</span><span class="n">UVR</span><span class="o">*</span><span class="p">((</span><span class="n">Precio_Compra</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">+</span><span class="n">cc</span><span class="o">*</span><span class="n">Nominal</span><span class="p">)</span>
+     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">*</span><span class="mi">1000</span>
+    
+    <span class="n">Valor_Giro</span><span class="o">=</span><span class="n">UVR</span><span class="o">*</span><span class="n">Valor_Giro</span>
     
     <span class="n">Dias2</span><span class="p">,</span><span class="n">Pago_Anterior2</span><span class="p">,</span><span class="n">Pago_Siguiente2</span><span class="p">,</span><span class="n">Precio_Sucio2</span><span class="p">,</span><span class="n">Intereses2</span><span class="p">,</span><span class="n">Tasa2</span><span class="p">,</span><span class="n">Valor_Giro2</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">,</span><span class="n">UVR2</span><span class="o">=</span><span class="n">In6</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Precio_Venta</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">UVR2</span><span class="p">)</span>
     
@@ -14163,14 +14171,14 @@ div#notebook {
 
     
 
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-intense-fg ansi-bold">  File </span><span class="ansi-green-intense-fg ansi-bold">&#34;&lt;tokenize&gt;&#34;</span><span class="ansi-cyan-intense-fg ansi-bold">, line </span><span class="ansi-green-intense-fg ansi-bold">27</span>
+<span class="ansi-yellow-intense-fg ansi-bold">    Valor_Giro=(Precio_Sucio/Valor_Nominal)*Nominal*1000</span>
+<span class="ansi-white-intense-fg ansi-bold">    ^</span>
+<span class="ansi-red-intense-fg ansi-bold">IndentationError</span><span class="ansi-red-intense-fg ansi-bold">:</span> unindent does not match any outer indentation level
+</pre>
+</div>
 </div>
 
 </div>
@@ -14201,25 +14209,6 @@ div#notebook {
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -14269,27 +14258,6 @@ div#notebook {
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
 </div>
 </div>
 
