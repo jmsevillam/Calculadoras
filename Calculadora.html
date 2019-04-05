@@ -13178,7 +13178,7 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">Layout</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">date</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span>
 
 <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/jmsevillam/Calculadoras/master/ESPECIETF.csv&#39;</span><span class="p">,</span><span class="s1">&#39;;&#39;</span><span class="p">,</span><span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1">/%m/%Y&#39;</span><span class="p">)</span>
@@ -13188,14 +13188,12 @@ div#notebook {
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">10.</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">num</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.</span><span class="o">**</span><span class="n">n</span>
     
 <span class="k">def</span> <span class="nf">prev_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Calculates the date of the previous payment&#39;&#39;&#39;</span>
     <span class="n">date_Ant</span><span class="o">=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">((</span><span class="n">date_Ant</span><span class="o">-</span><span class="n">today</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">date_Ant</span><span class="o">=</span><span class="n">date_Ant</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">date_Ant</span>
 
 <span class="k">def</span> <span class="nf">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Calculates the date of the next payment&#39;&#39;&#39;</span>
     <span class="n">date_Next</span><span class="o">=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;</span> <span class="n">date_Ven</span><span class="o">.</span><span class="n">month</span><span class="p">:</span>
         <span class="n">date_Next</span><span class="o">=</span><span class="n">date_Next</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
@@ -13205,7 +13203,7 @@ div#notebook {
     <span class="k">return</span> <span class="n">date_Next</span>
 
 <span class="k">def</span> <span class="nf">Duration</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">cupon</span><span class="p">,</span><span class="n">tasa</span><span class="p">,</span><span class="n">F</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Calculates the Duration of the bond&#39;&#39;&#39;</span>
+    
     <span class="k">if</span> <span class="n">F</span><span class="o">==</span><span class="s1">&#39;D&#39;</span><span class="p">:</span> 
         <span class="n">today</span><span class="o">+=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>  
     <span class="n">Dmac</span><span class="o">=</span><span class="mf">0.</span>
@@ -13226,7 +13224,7 @@ div#notebook {
     <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">Dmac</span><span class="o">/</span><span class="n">div</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">PSucio</span><span class="p">(</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">cupon</span><span class="p">,</span><span class="n">tasa</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Calculates the price &quot;Sucio&quot;&#39;&#39;&#39;</span>
+    
     <span class="n">date_Next</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
     <span class="n">date_Cupon</span><span class="o">=</span><span class="n">date_Ven</span>
     <span class="n">year</span><span class="o">=</span><span class="n">date_Next</span><span class="o">.</span><span class="n">year</span>
@@ -13251,6 +13249,7 @@ div#notebook {
     <span class="k">return</span> <span class="n">trunc</span><span class="p">(</span><span class="n">suma</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">days</span><span class="p">(</span><span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="p">):</span>
+    
     <span class="k">if</span> <span class="p">(</span><span class="n">date2</span><span class="o">-</span><span class="n">date1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="n">date1</span><span class="p">,</span><span class="n">date2</span><span class="o">=</span><span class="n">date2</span><span class="p">,</span><span class="n">date1</span>
     <span class="n">year</span><span class="o">=</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span>
@@ -13810,7 +13809,7 @@ div#notebook {
   </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="UVR-(En-Desarrollo)">UVR (En Desarrollo)<a class="anchor-link" href="#UVR-(En-Desarrollo)">&#182;</a></h1>
+<h1 id="UVR">UVR<a class="anchor-link" href="#UVR">&#182;</a></h1>
 </div>
 </div>
 </div>
