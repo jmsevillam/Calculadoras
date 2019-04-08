@@ -13253,11 +13253,20 @@ div#notebook {
     
     <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="n">date2</span><span class="o">.</span><span class="n">year</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">year</span><span class="o">%</span><span class="k">4</span>==0 and year%100!=0) or (year%4==0 and year%400==0):
-            <span class="k">if</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span><span class="o">==</span><span class="n">date2</span><span class="o">.</span><span class="n">year</span> <span class="ow">and</span> <span class="n">date1</span><span class="o">.</span><span class="n">month</span><span class="o">&lt;=</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">date2</span><span class="o">.</span><span class="n">month</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">year</span><span class="o">&gt;</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span> <span class="ow">and</span> <span class="n">year</span><span class="o">&lt;</span> <span class="n">date2</span><span class="o">.</span><span class="n">year</span><span class="p">):</span>
                 <span class="n">bic</span><span class="o">+=</span><span class="mi">1</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">date2</span><span class="o">.</span><span class="n">month</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">elif</span><span class="p">(</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span><span class="o">==</span><span class="n">date2</span><span class="o">.</span><span class="n">year</span> <span class="ow">and</span> <span class="n">date1</span><span class="o">.</span><span class="n">month</span><span class="o">&lt;</span><span class="mi">3</span> <span class="ow">and</span> <span class="n">date2</span><span class="o">.</span><span class="n">month</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">):</span>
                 <span class="n">bic</span><span class="o">+=</span><span class="mi">1</span>
-    
+            <span class="k">elif</span><span class="p">(</span><span class="n">year</span><span class="o">==</span><span class="n">date1</span><span class="o">.</span><span class="n">year</span> <span class="ow">and</span> <span class="n">date1</span><span class="o">.</span><span class="n">month</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">):</span> 
+                <span class="n">bic</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">elif</span><span class="p">(</span><span class="n">year</span><span class="o">==</span><span class="n">date2</span><span class="o">.</span><span class="n">year</span> <span class="ow">and</span> <span class="n">date2</span><span class="o">.</span><span class="n">month</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">):</span> 
+                <span class="n">bic</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            if(date1.year==date2.year and date1.month&lt;=2 and date2.month&gt;2):</span>
+<span class="sd">                bic+=1</span>
+<span class="sd">            if(date2.month&gt;2):</span>
+<span class="sd">                bic+=1</span>
+<span class="sd">            &#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">date2</span><span class="o">-</span><span class="n">date1</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">-</span><span class="n">bic</span><span class="p">)</span>
 
 
@@ -13275,12 +13284,14 @@ div#notebook {
     
     <span class="n">cupon</span><span class="o">=</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span>
     <span class="n">date_Cupon</span><span class="o">=</span><span class="n">date_next</span>
+    
     <span class="k">if</span> <span class="n">date_Ven</span><span class="o">.</span><span class="n">year</span><span class="o">==</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">year</span><span class="p">:</span> <span class="n">cupon</span><span class="o">+=</span><span class="mi">100</span>
     <span class="n">m</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cupon</span><span class="o">/</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">((</span><span class="n">days_next</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span><span class="p">)),</span><span class="mi">6</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="n">days_prev</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span>
     
     <span class="n">acum</span><span class="o">+=</span><span class="n">m</span>
+    
     <span class="k">while</span> <span class="p">(</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         
         <span class="n">date_Cupon</span><span class="o">=</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">date_Cupon</span><span class="o">.</span><span class="n">year</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -13288,7 +13299,7 @@ div#notebook {
         <span class="n">days_next</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">date_Cupon</span><span class="p">,</span><span class="n">today</span><span class="p">)</span>
         <span class="n">n</span><span class="o">=</span><span class="n">days_next</span><span class="o">/</span><span class="mf">365.</span>
         <span class="n">acum</span> <span class="o">+=</span><span class="nb">round</span><span class="p">((</span><span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="n">cupon</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> 
-    
+        
     <span class="n">r</span><span class="o">=</span><span class="n">trunc</span><span class="p">(</span><span class="n">acum</span><span class="p">)</span>
     <span class="n">PL</span><span class="o">=</span><span class="n">trunc</span><span class="p">((</span><span class="n">r</span><span class="o">/</span><span class="mf">100.</span><span class="o">-</span><span class="n">Interes</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">PL</span>
@@ -13949,7 +13960,6 @@ div#notebook {
     
     <span class="n">Valor_Nominal</span><span class="o">=</span><span class="mi">100000</span>
     <span class="n">Precio_Limpio</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="p">)</span>
-    
     <span class="n">Pago_Anterior</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Pago_Siguiente</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span>
     <span class="n">Intereses</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
@@ -14192,44 +14202,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
-  
-
-  <div class="nbinteract-hide_in
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&quot;ls&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-  </div>
 
   
 
