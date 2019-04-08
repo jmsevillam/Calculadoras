@@ -14271,7 +14271,7 @@ div#notebook {
 <span class="c1"># function that takes in a dataframe and creates a text link to  </span>
 <span class="c1"># download it (will only work for files &lt; 2MB or so)</span>
 <span class="k">def</span> <span class="nf">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Descargar datos&quot;</span><span class="p">):</span>  
-    <span class="n">csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
+    <span class="n">csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
     <span class="n">b64</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
     <span class="n">payload</span> <span class="o">=</span> <span class="n">b64</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
     <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;a download=&quot;</span><span class="si">{filename}</span><span class="s1">&quot; href=&quot;data:text/csv;base64,</span><span class="si">{payload}</span><span class="s1">&quot; target=&quot;_blank&quot;&gt;</span><span class="si">{title}</span><span class="s1">&lt;/a&gt;&#39;</span>
@@ -14326,6 +14326,34 @@ div#notebook {
 
 </div>
 
+<div class="output_area">
+
+    
+
+
+<div class="output_html rendered_html output_subarea ">
+<a download="test.csv" href="data:text/csv;base64,LE7Dum1lcm8sRXNwZWNpZSxFbWlzaW9uLFZlbmNpbWllbnRvLEN1cG9uLFBhZ28sQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVW5uYW1lZDogNwowLDEsVEZJVDA2MTEwOTE5LDIwMTMtMDktMTEsMjAxOS0wOS0xMSw3LjAwJSwxLENvdGl6YWNpw7NuIE9ibGlnYXRvcmlhLFRGSQoxLDIsVEZJVDE1MjQwNzIwLDIwMDUtMDctMjQsMjAyMC0wNy0yNCwxMS4wMCUsMSxDb3RpemFjacOzbiBPYmxpZ2F0b3JpYSxURkkKMiwzLFRGSVQxMDA0MDUyMiwyMDEyLTA1LTA0LDIwMjItMDUtMDQsNy4wMCUsMSxDb3RpemFjacOzbiBPYmxpZ2F0b3JpYSxURkkKMyw0LFRGSVQxNjI0MDcyNCwyMDA4LTA3LTI0LDIwMjQtMDctMjQsMTAuMDAlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjQsNSxURklUMDgyNjExMjUsMjAxNy0xMS0yNiwyMDI1LTExLTI2LDYuMjUlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjUsNixURklUMTUyNjA4MjYsMjAxMS0wOC0yNiwyMDI2LTA4LTI2LDcuNTAlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjYsNyxURklUMTYyODA0MjgsMjAxMi0wNC0yOCwyMDI4LTA0LTI4LDYuMDAlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjcsOCxURklUMTYxODA5MzAsMjAxNC0wOS0xOCwyMDMwLTA5LTE4LDcuNzUlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjgsOSxURklUMTYzMDA2MzIsMjAxNi0wNi0zMCwyMDMyLTA2LTMwLDcuMDAlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjksMTAsVEZJVDE2MTgxMDM0LDIwMTgtMTAtMTgsMjAzNC0xMC0xOCw3LjI1JSwxLENvdGl6YWNpw7NuIE9ibGlnYXRvcmlhLFRGSQo=" target="_blank">Descargar datos</a>
+</div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
