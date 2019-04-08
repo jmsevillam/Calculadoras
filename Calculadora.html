@@ -13503,7 +13503,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Calculadoras-(Beta)">Calculadoras (Beta)<a class="anchor-link" href="#Calculadoras-(Beta)">&#182;</a></h1><p>Mauricio Sevilla.</p>
 <p>email: <code>jsevilla@credicorpcapital.com</code></p>
-<p>08.04.2019-7</p>
+<p>08.04.2019-8</p>
 <hr>
 
 </div>
@@ -14271,8 +14271,8 @@ div#notebook {
 <span class="c1"># function that takes in a dataframe and creates a text link to  </span>
 <span class="c1"># download it (will only work for files &lt; 2MB or so)</span>
 <span class="k">def</span> <span class="nf">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Descargar datos&quot;</span><span class="p">):</span>  
-    <span class="n">csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span>
-    <span class="n">b64</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="n">csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+    <span class="n">b64</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin8&#39;</span><span class="p">))</span>
     <span class="n">payload</span> <span class="o">=</span> <span class="n">b64</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
     <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;a download=&quot;</span><span class="si">{filename}</span><span class="s1">&quot; href=&quot;data:text/csv;base64,</span><span class="si">{payload}</span><span class="s1">&quot; target=&quot;_blank&quot;&gt;</span><span class="si">{title}</span><span class="s1">&lt;/a&gt;&#39;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
@@ -14299,6 +14299,7 @@ div#notebook {
 <span class="n">display</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
 <span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;test.csv&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+
     <span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;test.csv&#39;</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
@@ -14356,7 +14357,7 @@ div#notebook {
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
-<a download="test.csv" href="data:text/csv;base64,LE7Dum1lcm8sRXNwZWNpZSxFbWlzaW9uLFZlbmNpbWllbnRvLEN1cG9uLFBhZ28sQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVW5uYW1lZDogNwowLDEsVEZJVDA2MTEwOTE5LDIwMTMtMDktMTEsMjAxOS0wOS0xMSw3LjAwJSwxLENvdGl6YWNpw7NuIE9ibGlnYXRvcmlhLFRGSQoxLDIsVEZJVDE1MjQwNzIwLDIwMDUtMDctMjQsMjAyMC0wNy0yNCwxMS4wMCUsMSxDb3RpemFjacOzbiBPYmxpZ2F0b3JpYSxURkkKMiwzLFRGSVQxMDA0MDUyMiwyMDEyLTA1LTA0LDIwMjItMDUtMDQsNy4wMCUsMSxDb3RpemFjacOzbiBPYmxpZ2F0b3JpYSxURkkKMyw0LFRGSVQxNjI0MDcyNCwyMDA4LTA3LTI0LDIwMjQtMDctMjQsMTAuMDAlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjQsNSxURklUMDgyNjExMjUsMjAxNy0xMS0yNiwyMDI1LTExLTI2LDYuMjUlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjUsNixURklUMTUyNjA4MjYsMjAxMS0wOC0yNiwyMDI2LTA4LTI2LDcuNTAlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjYsNyxURklUMTYyODA0MjgsMjAxMi0wNC0yOCwyMDI4LTA0LTI4LDYuMDAlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjcsOCxURklUMTYxODA5MzAsMjAxNC0wOS0xOCwyMDMwLTA5LTE4LDcuNzUlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjgsOSxURklUMTYzMDA2MzIsMjAxNi0wNi0zMCwyMDMyLTA2LTMwLDcuMDAlLDEsQ290aXphY2nDs24gT2JsaWdhdG9yaWEsVEZJCjksMTAsVEZJVDE2MTgxMDM0LDIwMTgtMTAtMTgsMjAzNC0xMC0xOCw3LjI1JSwxLENvdGl6YWNpw7NuIE9ibGlnYXRvcmlhLFRGSQo=" target="_blank">Descargar datos</a>
+<a download="test.csv" href="data:text/csv;base64,O076bWVybztFc3BlY2llO0VtaXNpb247VmVuY2ltaWVudG87Q3Vwb247UGFnbztDb3RpemFjafNuIE9ibGlnYXRvcmlhO1VubmFtZWQ6IDcKMDsxO1RGSVQwNjExMDkxOTsyMDEzLTA5LTExOzIwMTktMDktMTE7Ny4wMCU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQoxOzI7VEZJVDE1MjQwNzIwOzIwMDUtMDctMjQ7MjAyMC0wNy0yNDsxMS4wMCU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQoyOzM7VEZJVDEwMDQwNTIyOzIwMTItMDUtMDQ7MjAyMi0wNS0wNDs3LjAwJTsxO0NvdGl6YWNp824gT2JsaWdhdG9yaWE7VEZJCjM7NDtURklUMTYyNDA3MjQ7MjAwOC0wNy0yNDsyMDI0LTA3LTI0OzEwLjAwJTsxO0NvdGl6YWNp824gT2JsaWdhdG9yaWE7VEZJCjQ7NTtURklUMDgyNjExMjU7MjAxNy0xMS0yNjsyMDI1LTExLTI2OzYuMjUlOzE7Q290aXphY2nzbiBPYmxpZ2F0b3JpYTtURkkKNTs2O1RGSVQxNTI2MDgyNjsyMDExLTA4LTI2OzIwMjYtMDgtMjY7Ny41MCU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQo2Ozc7VEZJVDE2MjgwNDI4OzIwMTItMDQtMjg7MjAyOC0wNC0yODs2LjAwJTsxO0NvdGl6YWNp824gT2JsaWdhdG9yaWE7VEZJCjc7ODtURklUMTYxODA5MzA7MjAxNC0wOS0xODsyMDMwLTA5LTE4OzcuNzUlOzE7Q290aXphY2nzbiBPYmxpZ2F0b3JpYTtURkkKODs5O1RGSVQxNjMwMDYzMjsyMDE2LTA2LTMwOzIwMzItMDYtMzA7Ny4wMCU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQo5OzEwO1RGSVQxNjE4MTAzNDsyMDE4LTEwLTE4OzIwMzQtMTAtMTg7Ny4yNSU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQo=" target="_blank">Descargar datos</a>
 </div>
 
 </div>
