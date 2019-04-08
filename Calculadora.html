@@ -13503,7 +13503,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Calculadoras-(Beta)">Calculadoras (Beta)<a class="anchor-link" href="#Calculadoras-(Beta)">&#182;</a></h1><p>Mauricio Sevilla.</p>
 <p>email: <code>jsevilla@credicorpcapital.com</code></p>
-<p>08.04.2019-2</p>
+<p>08.04.2019-3</p>
 <hr>
 
 </div>
@@ -14090,7 +14090,7 @@ div#notebook {
     <span class="k">return</span> <span class="n">ret</span>
 
 <span class="k">def</span> <span class="nf">Calcular_Tasa_UVR</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Precio_Compra</span><span class="p">,</span><span class="n">Precio_Venta</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">tasaFondeo</span><span class="p">,</span><span class="n">UVR2</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">res2</span>
+    <span class="k">global</span> <span class="n">res2</span><span class="p">,</span><span class="n">res</span>
     <span class="n">tasaFondeo</span><span class="o">/=</span><span class="mi">100</span>
     <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Especie&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">Bono</span><span class="p">)</span>
     <span class="n">Emision</span><span class="o">=</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Emision&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">]</span>
@@ -14140,6 +14140,7 @@ div#notebook {
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="c1">#display(data)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">data2</span>
     <span class="n">n</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span>
     <span class="n">Costo_dinero</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasaFondeo</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="mf">1.</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">Diferencia_Giro</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro2</span><span class="o">-</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -14193,6 +14194,78 @@ div#notebook {
 </div>
 
   </div>
+
+  
+
+  <div class="nbinteract-hide_in
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Generar Links!&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">data2</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="s1">&#39;Tasa UVR.csv&#39;</span><span class="p">,</span><span class="s1">&#39;Tasa&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">res2</span><span class="p">,</span><span class="s1">&#39;Resumen UVR.csv&#39;</span><span class="p">,</span><span class="s1">&#39;Resumen&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+<div class="output_html rendered_html output_subarea ">
+<a download="Tasa.csv" href="data:text/csv;base64,LENvbXByYSxWZW50YQpGZWNoYSBkZSBMaXF1aWRhY2nDs24sMjAxOS0wNC0wOCwyMDE5LTA0LTA4CkTDrWFzIGFsIHZlbmNpbWllbnRvLDksOQpWZW5jaW1pZW50bywyMDE5LTA0LTE3LDIwMTktMDQtMTcKUGFnbyBBbnRlcmlvciwyMDE4LTA0LTE3LDIwMTgtMDQtMTcKUGFnbyBTaWd1aWVudGUsMjAyMC0wNC0xNywyMDIwLTA0LTE3CkN1cG9uICUsMy41LDMuNQpQcmVjaW8gU3VjaW8sMTAzLjQxMywxMDMuNDEzCkludGVyZXNlcywwLjAzNDEzNywwLjAzNDEzNwpQcmVjaW8gTGltcGlvLDEwMC4wLDEwMC4wCk5vbWluYWwsMTAwMDAwMDAuMCwxMDAwMDAwMC4wClZhbG9yIEdpcm8sMjczMzUzMjI2NC4wLDI3MzM1MzIyNjQuMApVVlIsMjY0LjMyOTgsMjY0LjMyOTgKRHVyYWNpw7NuLC0tLC0tCg==" target="_blank">Tasa</a>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+<div class="output_html rendered_html output_subarea ">
+<a download="Resumen.csv" href="data:text/csv;base64,LApDb3N0byBEaW5lcm8sMC4wCkRpZmVyZW5jaWEgZGUgR2lybywwLjAKUCZHLDAuMApSZXRvcm5vIHNpbiBjb3N0b3MsMC4wCg==" target="_blank">Resumen</a>
+</div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
@@ -14219,19 +14292,38 @@ div#notebook {
 
 <span class="c1"># function that takes in a dataframe and creates a text link to  </span>
 <span class="c1"># download it (will only work for files &lt; 2MB or so)</span>
-<span class="k">def</span> <span class="nf">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Download CSV file&quot;</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">):</span>  
+<span class="k">def</span> <span class="nf">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Descargar datos&quot;</span><span class="p">):</span>  
     <span class="n">csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
     <span class="n">b64</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
     <span class="n">payload</span> <span class="o">=</span> <span class="n">b64</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
     <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;a download=&quot;</span><span class="si">{filename}</span><span class="s1">&quot; href=&quot;data:text/csv;base64,</span><span class="si">{payload}</span><span class="s1">&quot; target=&quot;_blank&quot;&gt;</span><span class="si">{title}</span><span class="s1">&lt;/a&gt;&#39;</span>
     <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
 
-<span class="c1"># create a random sample dataframe</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">))</span>
+    </div>
+</div>
+</div>
 
-<span class="c1"># create a link to download the dataframe</span>
-<span class="n">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+  </div>
+
+  
+
+  <div class="nbinteract-hide_in
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Generar Links!&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">button</span><span class="p">)</span>
+<span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;test.csv&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;ABCD&#39;</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14247,12 +14339,96 @@ div#notebook {
     
 
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<a download="data.csv" href="data:text/csv;base64,LEEsQixDLEQKMCwtMC4xMDUxNjYxMjQ1NTkzNjk2LDEuMTE5MzMzMzM0NTgzMTc4MiwxLjQ1NDYwMzg2MDk2NjE4ODIsLTIuMDQ5NDIxODIyNDk1ODk5CjEsMC4yNzU5NzczOTM5Njg2MTk0LDAuNDE1MjI5MDE2NjAxMjA4MSwtMC4xNDY0NjMwMjk4MDcxMDU1MiwwLjA2OTQzMzk5ODAwODE0MjQzCjIsLTAuMTA0MTIwNjU0ODczMzc4NjUsMC4xMjgxNjQzNDU5Nzk2Mjc4NCwwLjIwNDQ0MjQ2NjY2Njc2OTc3LC0wLjQ3MTMxNDQzMTM2MjY2ODA0CjMsLTAuODU4MTUwOTAwMTYyMzI0MywwLjAxMTgxNTUxMTYyMTU3NjMyMiwtMC44NDgyNzg5NTM4ODM1Njk4LDAuNjE1Njc2MTU3MjU4OTU4Ngo0LDAuMzU1MDkwNzMyNjgwNDkxMTMsLTAuNzUxNDAzNDM4MzIzNzk5NywwLjMzNjIyMzUxNDAzNDQxMDQsMC41MzkwNzAyODU3NzkwNDcKNSwwLjA4OTkwMjc5ODcxNzMxODExLDAuODk4NDI0OTM5MDEzNDAzNiwxLjQxOTQ3MTgyMzMwMTE0MzYsMC4wNzIxMjY0NTY5Mjc3OTkyMgo2LDAuNjg0MzIwMTQyNTk1NjE0NywtMC4yNTEzNjUzNjYwMDc1NTI5LDAuMjIxNTA0NjYzMDA4MTIwNywwLjU0OTEwMjc3Mzg4MTg1NjYKNywtMC4yMTM1ODcwNTg2MzIxMTczNSwtMS4xNzUwNTM1ODgxNjgyMTUsLTAuOTk4ODI3MDk3MDE1NDQ2MywyLjI0MjAyMDc5MjE2ODIwOQo4LDAuMzA4NDk5OTgxMDI5NzIyMSwxLjI5Mjc1ODQ4NjI5NTgyMDYsMS4yOTA3NDA2MDE1MTM5NjUsMC4zMTkyMjA5OTE3MzI3Nzc5Ngo5LDAuMjMyOTgwOTE3MTczOTcxOTksMC45Nzc4NzM5NjU5NDExNTA2LDAuMDc1Nzk2MDkwMDUwMjIzMywxLjQ0NjAxMzAwNDM3MzA2MzUKMTAsMS4yODIzODQ0NTg5ODY1Nzc2LC0xLjA5NzA5NjUzNDU4ODQ1NDIsMS4xNjgwMTE0NjAwMTQ2MjIzLDEuMDE3OTM0MzY3NzgwNzkxMwoxMSwxLjE4NTk0Njk1OTY5NzI3NTEsMC44NjU3ODk2NDE2MTk5NDM1LC0wLjQ4NzIxOTUyNTg3NjU4NzU3LDAuNzYxMjAzOTkwMDc1MDY2OQoxMiwtMC4xOTk4ODMyMDM1ODYzMDU2LC0xLjI0MzgzNjI1Mzk0NjU3NDgsLTAuOTI5ODY3ODQxOTY4NTc1NCwtMC4yOTYxNTcxNjA2MDc2NTczNAoxMywwLjY5ODc5ODk3NDQ2Njg0MDYsMC4xMjkyMjIxNzUwMzg2ODcyNCwtMS42NDY3ODIxOTk2MTA4NzM2LC0xLjU0OTM1MzgzOTI1OTQyMgoxNCwwLjIzMDkxMTc1MjA0MTEwNDEsMS41MTAxMDAzMDMxOTk4NjY1LDAuMDc1Mjg1NzI1NTEwNDM5MzMsLTEuOTQ3NjMyMzU3MDM5NTYyMgoxNSwwLjk0Mzg1NzIwNTk4NTM5NTIsMC4wMDQ4NDAxOTY5OTAxNzgxNDksLTAuMTk2MTI2NzA4OTQxMTcwNDYsMC44NTU3NDI0MTM3NDQwNzA1CjE2LDAuNTg0MjY0MzE2NzM1NjU1NSwwLjYxNjcyNjA1MjM0MzI4MDcsLTAuMTQ4MDcyMjEzOTQ2NDQ0MiwwLjYwNjUxMDY2OTM3NDczNDEKMTcsLTIuMTY1MjQ3Mjk2MDMyMTg0NSwtMS4yNDIxODA3OTAyNzM4MTMzLDAuOTcwODAwNjU5NTA1MzI5OCwyLjI3NTY4MDQ2NTQyNDA5OQoxOCwxLjIwNDQxNzA5NjAwODM5NTcsMS41NjQyOTk5OTAxMjEyMDA1LDAuMTM4NzY3MDE4Mjk0NDEzMDcsMC4zNTcwMTc2OTkwMzY3ODU2CjE5LDIuNDc3MTUwNDY4Njg4MzExLDAuMDgxNDM5NDU4ODMwMzk1NzcsMS41NDU3NDUyNjY1NjgxODcyLC0xLjEyNjE5MjcyNzY4MzAxNjgKMjAsMS41NTg5Nzg3MDAxNTkzNzcxLC0wLjEwNDE1OTIxMzI2NTE3MzEsMC45MTM5MDQzMDk0NjAzOTU1LC0wLjMyNTg5NDk5MDg4MjAzMwoyMSwtMC4xODA2OTIyNDkzMzExODAzLC0wLjI5NzU0MDEwNjc3NTI0MTMsMS40Mzk1ODkwNDY5MDEwNjcsMC4yNTA1NjMxOTY4MTkyOTkyCjIyLC0wLjQ4ODg4ODc2NjU3NzUxNjMsLTAuMDM4MDkzODkyNDI2OTk3NTcsLTIuMTY5MjYyNjU3ODM1MzcxLC0wLjYzMTY5NzkzMTk1MDk4OTIKMjMsMC41MDU0MzE5MTc5MTI0NzQxLC0xLjI5MjMyMjkzODQyMDk0NzYsLTEuMDkxOTcwMjA5NzEwNDAwMywtMS4zODUyMTE3Mjg4MzgyNDQKMjQsMC45MTc3MDI4NDQyMzA0MjY3LC0xLjQ1NDYzNDU3NzkzMDU1MzIsLTIuMTg5MTg4Mzc2NzQ3MDIzLC0wLjI4NDY1OTE4OTUzMjk1MjIKMjUsLTEuNjI5MTQ3NTg5MzY4MDE3NiwtMC4zNDAxNjE5ODg4ODU3MDQ4LDEuNDkxODgwMTA5OTgyMjQ0NSwtMC4xODc0MDY0NDUwMzQyNjU2MgoyNiwwLjg2NjE4MjA1MTIwODY1MDEsLTEuNzg3MTUyODQ0MzA3OTU4MywtMC41MjgwNDM3NDYzMzg1MjgxLDAuMzQ1ODE0OTQ5MjQ2MzM0NgoyNywtMC41OTM4MDI5MjA3NDQxODA2LDAuNzQ1OTQ5NTg0MTQ3MDI1NCwtMC41NTk4OTMzOTIwODQxNTExLC0wLjAxMDg1MjgzMjM2NDYxMzExMgoyOCwwLjI0NDY1MDQ2Mjg2MjU3MjgsMS4yOTkwNTE0MTU2MDU0ODA0LDAuMTQyOTk1MjM1MzM5NjY2NjUsLTEuMTY0MjIyOTYxMjI0NTc3CjI5LDAuMTE5MjIwNzgyMjUzNDE1MjMsLTAuMTQzODg1NjAyNTk0MzY1OSwtMC42NDU1OTIyNzIwNzE1NDYsMS4zNjEyMjMzNDA4MTUwODk4CjMwLC0yLjIwNDc3MDU5NTQwMDAwOTYsLTAuODE1NjEwNjgzNTYyMjE5NCwxLjczOTk2MjQxODg2MzAxNDcsMC4wNjQzODc0OTUyODA1MTM3OAozMSwtMC4xMDEwODc0MzM4Mzg5ODA0NywwLjM3NTQ0NzI3Mjk4MzY3MDAzLDEuMjQ2MDI2ODcyMzU1OTExOCwwLjYxMzM5OTI0NTI2NTkxNTUKMzIsLTAuNDIzNTk4ODg5MjEwOTU3MzQsLTAuMzk1Mjg3NDcyOTE1NTkyMTMsMC4xNDAxMjYzODA5NTAzMjQ0LC0wLjc1MTc4MzgyMzk4NzUxNzgKMzMsLTAuOTQxMjU5NzIzODE2ODQyNCwtMi4xMzczNjM2MDY4OTAxNTQ3LC0wLjUwMzA2ODk0Mjg3MzUwNzUsMC4zMzYzNzEyNDU3MTU0MTk5MwozNCwwLjYzNzI1NjUxNjQ1OTQyNjQsLTAuNzgxNzAxMDY2MTcwOTg0OSwwLjYzMDc1NDgzMTUwOTIyNzcsLTAuODY5ODc4NTEyNjcyODAyNQozNSwxLjIzMTMwMzcwNjAxMDg0MzgsMC44MTA5OTAyNDE1MDM3NzQyLDAuNTA2NDQ4MzQwNzAyMDE3OCwxLjg1OTMyNDE3NTU0MDY4OTUKMzYsLTAuNTY5MjA4ODEyMTk4NzU1NSwtMS4wMTI4OTM1OTg1OTk5NDk0LC0xLjU2MjU5NTY2NDMzMzk1MiwxLjAzOTA3NDU0NzE2MzgzMDcKMzcsLTAuNzYzOTMxNDkwNjExODA1MywwLjU0NjE3MDQ5MjI5MjI1OTMsMC42NjIzMTA1NjgzNTQxODMxLC0xLjkxMzY3MTE4MDc0OTk2MzMKMzgsMC44MjU3ODcwMDM2MzY2NjQ1LC0xLjAzOTI4MjQxOTEyNzUxNzYsMS42Nzk4NjMxODAzMTEyODQ3LDAuMTY3MjkwNzU3MTUyMjI5MzUKMzksMS4zNTgyMDEzNTkzNjY5OTY4LC0xLjQ3ODcwMzUxMTAxMDI4MDIsLTAuNzYxNzQ3NTgyNjQzMzIwNCwtMC4zODgyNTk4MjQxODk5MDcyMwo0MCwwLjA2OTI1MjE3MzI4OTc3MzY5LC0xLjk1MTA5NTcyMzMzODcxMzIsLTAuMzM0MDA3MjcwNjc3OTQyOSwwLjQ2NDc0NzI5MDQ2OTc4OTYzCjQxLC0yLjExODY3ODg2NzMyNTcwMzMsMC4yMDc4MzYzMjQwODQwMzA3NCwtMC45MDYyMDQ3NjE4MTEwMjU4LC0wLjYyNzk1NjM2Mzc4MjM3NDMKNDIsMC4yMjg2NjAzNzg3NzMxMjAyMywtMS4yNzE3NjQwNDk0MTY5MjgyLDIuMDc2Njg5MDM1MzE4MDc0LDAuNDYyMzM4MDUwNzQ5MDA2MzYKNDMsMC4xMzQzNTc2MjU2ODA3MzY3MywtMC4zODY1MTM3MDM1OTUxODE0NSwtMi4xMjAwNTcxMjc2NDk3NzA0LDEuNDg0NTY5NDgzNDQzMDcxCjQ0LC0wLjM5NDg3NzA4NTg0MTQ4OTgsMC4xOTE3MzYwOTcyMDM0MjYzLDAuOTk5MDY5OTE0MjkyODU5OSwwLjQxNTc2NzM2NjYyMDk0NTkKNDUsMC4zMDMwMTQzMDE1MTY5NjY0LC0wLjA5MDkwNTg2ODUyNDk2MjUzLC0wLjg5MTMxNDAxNjIxMjcxNDMsLTAuMzk2MTU5MDA5MTI1Nzg4MTYKNDYsMi41MDMzOTE2NTI1MTAwODQ4LC0xLjMxMTE3OTE4NDM1NjI3MTUsLTIuNTg3ODQwNDg3MDYzNzc3NywtMC4yNjUyNzIyNzE0OTQwMTI2Nwo0NywtMS4zNTAwNjkyNTA5OTI3NDE3LC0xLjQ3MjU5MjA1NDgwODQzNTUsMi40ODE4Njg0NzA0NTczMTMsLTAuMzY1NzM5NDg2MTI3OTc0NQo0OCwwLjgyMjM0Mzc3MjYyMzYzODEsMC40NzA1NDQxODEwMDM2NjksLTAuOTI0NjI1MTE5NDM3MzY2NSwtMC42MzU2MDI3NDMzOTg4NTk5CjQ5LC0wLjg5NTc3NzY3MzYxNTU4ODksLTAuNTY4MDQ1OTc4NjE0NTUyNywxLjg0NDI1NzM4Mzg3NzcyNjMsLTAuNzMxOTU3NjU0NzE4ODc0MQo=" target="_blank">Download CSV file</a>
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+<div class="output_area">
+
+    
+
+
+<div class="output_html rendered_html output_subarea ">
+<a download="test.csv" href="data:text/csv;base64,LEEsQixDLEQKMCwtMS45NzQxMTMwMzM4MjUzMjcsLTAuMjg2ODMyMDI1NzI0NjQ0LDAuMzQ5OTE1MDkyMTA2MzM3MSwtMC4wMjQwMjY1MDk0NTE5NDAyNTQKMSwwLjYxMDM0MTcyNjY0MDQsMC40ODQyNDc1NjEyODM1NjA0NSwwLjY5NzIyMjk5NzYzNjU1NjcsLTAuMTc2OTM0MDM1MjYxNDQ3NTUKMiwtMC4zMjA3MTk4NzczNzI3MTE3LC0xLjA0NTE1MTUzMDYyOTI3MywxLjM2OTIyNzgxOTQ0ODU3MTksLTAuMzg4NjU1NTI5NjY3ODM3MQozLDAuMzIwNzk2MjUyMzAzODAxMywxLjE2OTYyNzYxNzYzMTQ0ODYsMi4xNDQzMzY4MjM3NDU0MywtMC4yNzMxMzI0MDI3MDcyMzQ1NQo0LC0xLjA0MjkyNTI2NTgxNDA2ODQsMC43NTUwNDI1MjY5NDA0MjEsLTAuNDIwNDI3OTgzNjU0OTk2NCwwLjA2MDIyNjg3OTU4NTY4NDQzCjUsLTAuODA2MzAyOTcwODg1MzEzOSwtMC41MTk4Mzg4MzQ5OTU2NDc5LC0wLjAyNjQ1MDQzMDA4NTI4NTkyOCwwLjEwODI2NzQ0MzI1MDI2ODgxCjYsLTAuODIwMTc2OTk0MjcyNTM1NSwwLjQ3MDM4MTM2ODEyMDc2OTksLTEuOTk1OTA2NTA3MjA3MzkyNSwwLjE2MTY3NzkxNDQyMDk0MjM0CjcsMC4xOTA3MDM5ODc2ODk5MzMyLC0wLjg1NjA5MzYyODE1NzU4MzIsMS42MjUxMTMwMDMzOTExNTc0LDAuNDMyMDE2OTc0Njg0ODgxNjUKOCwtMS44MjY0Mzk5NzUwMjk2NjQzLC0wLjYzMTgxNTI1NDIyOTA4MTQsLTAuNDE1NTA3OTgzNzUxNTQ1OSwwLjExNzc4Njg2NjgzMzEzOTA2CjksMC41MTQzODU1MzU2MTUxODE3LC0xLjU0NTE0ODQ0MjE1NTU1MTcsLTAuNzAyODQ0NDY5MDg2NTc5MywwLjUxNzQ2MzE4MTg1NTk5MzIKMTAsLTAuMjQyNzUwNDk0ODc1NjQ3MDcsLTAuMjE4MDUyNjI5MjcyOTQwMTcsMC4xNTQ0OTE4MDUwMzM2NDE1MiwtMS42NTMxMzkwMjU2MjMxMTAyCjExLDEuMjQ0MjA1NjY0MTk0MzAyNywtMC40Mjk0MTIxNDMyMjYwNTg3LC0wLjU3MzU1OTQ3NzE5MDY5OTIsMC4zNjc2Mjk3ODQwOTIzMDE1NwoxMiwtMC41Mzg2ODgwMDkwMTIzMzEsLTEuNzQ1Mzc0MjQzNzI3NzUxNywwLjQwNzg0NTY3NTEyODc3NDMsMC45MDMwMzA2NTUyNTc2NTU0CjEzLDEuMzI5MTUyMTgxNzQyMDg3NywwLjM1MjAxNzI4NDE4Mzk2MDQ0LC0wLjQ2MDAzNjA5NjY2MzEwODc0LDAuNDE0MzQwMDk3MTYwMjAwNjUKMTQsMC44OTI2MjE4MDYyMTkxMzIxLC0xLjQyMzUwNjc5NDAxNTA5MDUsMC43NzU1MDAwMzA1MTQxNDEyLC0wLjQzMjQ0OTQ1NTg0ODE5OTU1CjE1LDAuMDc4MzM2MjY5ODM0MjYwNzcsMC43Mjc5Mzg1NjI3NzUwODY2LDAuODUyMDc3MTgwNzkwNDkyMSwxLjAxMTA1Nzc3MzU0NzMzMTYKMTYsLTEuMjE2Mjk4NjQ0NjUxNzQ3NCwxLjIwMzczMzA4NzE3Njc2NzcsLTEuOTI2NDk2Nzg1NjE0NzgwOCwtMC41MzI3MjYzODcxOTk2MTQyCjE3LC0xLjI4ODU3NDI2NDg1OTY2MDgsLTAuMjk1MzM1MTk3MzgyMTc3MiwtMC4yMDkwNDkxMzU5NDc4MDYxLDAuMjIyNzY4MDY3NDA2ODU4NgoxOCwwLjQ2MzYxNzU4MTc4NzMxMDk0LC0xLjUyNDg5NTI3MTEyOTU1MzgsMC4yODYzMDYxNTI3OTYwMzYwNSwtMC42MTQzNzc2MDYyNzU3ODQ3CjE5LC0xLjg0NzcyMzUwNDUwNzc2MjIsLTAuMjE0NjE0NjQwMjMyMTU1NzYsLTEuMjQ2NDY0MTU0OTI4Nzg3NCwtMC40MzI2MTk1MDE0OTYyNTEKMjAsMC42NDQ3NzE2MjQ1OTIxMjgsLTEuMzQwNTgyMTUyNTUzNjM1NCwtMC4yNDE5MTE5NTY0MTc4MjQ2MiwtMC44MTc1NDk2ODQ3MDQ1MTU4CjIxLDIuNDk5MTM3MzcyNTc4MzA5LDAuNzQ5NDE2NTUxOTI1MDgzLC0wLjY1OTEyMzU5NjA5ODgwMjQsLTAuNzkyOTE3MzgwODgwOTYzMwoyMiwyLjM4MTU5NTg3MTYxMTQ1NCwtMC42ODEzMTgwMTY1MjAxMTQ2LDEuMTM2NjcwNDEzMzMxNjQsLTAuODUxNTcxODYzNzg2ODg1CjIzLC0xLjIzMjk2NzUxNzc4MTA1OTcsMS4xODY4MDA0Mzg1ODA0MjM4LDAuMjY5NTU0MTkxMjgxMTAxMzYsMS4wNjU5MTU0ODcyODU5MjM2CjI0LDAuNjk3OTUyNTg3ODQzNDIyOCwtMS43OTg4NzU3MzMxODI5MDksLTAuMTc4NjE1NDA3MzkxNzcyMjksMi41OTYwMDcwMjMyNDE5NTU2CjI1LDAuMjQyODQzOTIxNDg1MzE5ODYsLTAuNTU0NjQ5MjY0MDM4MjgzLC0xLjM0MTg3MTY3NjIxNDk3MDMsLTAuODY4NzkzNjA3NTMwMDE4NAoyNiwwLjMzNDc5NDg5NjUyNDM5ODgsLTEuOTU0NzYwNjg1MjAzMDkzMiwwLjgzMTY2MjA3OTUxODEyOTQsMC4yNTE5Mzg3NjE2NTY2NTM2CjI3LDAuNjQwODQ0ODE4NjEwNTQ5OSwxLjM1OTYyNDA4MzY0MjM2MjUsMC4yMTk5MjcyODg5ODIxOTksLTAuMTQxMzcxOTM0NTcyNzYxNAoyOCwtMC4yMjUyOTMxODIyMDAwMTY2OCwtMS40NTQ5OTY3MDYxMjY1MDE0LC0wLjUwNTA0MzkyMDY0ODU0MTEsMS4zMDU3NDM5Mjg2MTY1MzY3CjI5LDAuMTU2MDE2MDcxMDg1ODcxNDgsLTEuNTg5MjUxMzcxODcyMzIsLTAuNzk2MTc0ODE0OTIxNTQ1NCwwLjkwMzIxNzkwNTk2OTc5NTIKMzAsMS4wMDczNDQyMzIwMDY3MDIzLC0wLjM5MTM0MTIyNTQ2ODMyNDYsMC41NzgyOTMyMTc4MTM0ODk3LDEuODI0MTg0NDExODI0MTU1NwozMSwwLjU5NDI0NjQ5Njc5ODQ4NTIsLTEuNjAwMDQxNTkxNjYyMzM3OCwtMC43MTYwNzY4NTA0OTU5MDc2LC0wLjM1NTM2MzA2NTA2NzI3OTY2CjMyLDAuMzY3MjI5MTM1MDIwODMzNzYsLTAuNjc3ODE0MTA4Njc5ODc5LDEuMDgwNDkzNzg4ODE4NzUxNiwwLjY3Mzk0MjI2MTY0OTQzODMKMzMsMC45ODM0MjU0Njk3MDIzMTg3LC0wLjAxMTkwMzgzNzEyNzExOTU2OSwxLjcwMzA4NjczMDYwODEyMiwtMC45MTI5NTUwNjgxMTc4NjY4CjM0LC0wLjg3NDk0Mjk4MTU0MzI2NDIsMC42OTc1MTg2NjEzNzAxMTgzLC0xLjExMTM4MDE3NDMyOTg4MzIsLTAuNDk3MjgxNTE5Nzg0NjcwNQozNSwxLjAyMzg1Mzk4NjM1Mjc5NTYsMC43MjA5NDUwNDU3OTMzMTEsMC45NDY2MTQ4MDE4MDUyODE5LC0yLjAzNjI3Nzk3MTYzMDU5NzQKMzYsLTEuMzQyNzc2NjA2Mzk0NDMxNywtMC4wNTE1MjIxODkzMDYyMzE2NSwwLjQyNTQ5MDY0NjExMzQyMDg2LDEuNzY4Nzg2MDQ1Mzg5ODg0NwozNywwLjMwOTk2ODc5NTQ2MjM2NjksLTEuMDM0ODA5MDE3ODg4MzYwNywtMC4xMzkwOTExMzM0OTE2MjQ3LC0xLjYyNTA4Mjk1MDAxNjgyNzMKMzgsLTAuNzM3MTA5MTk1ODEzOTcyOCwtMi4wMzE2MDAxMTA0MjE2MjA0LC0wLjI4MDkyMTc4MjY1MzQ3MTIzLDAuNTg2NjczMDc3NTUwMzI4NgozOSwtMC4xMjcxNDQ0ODYwMDE3NjUwNiwwLjQxMTMzMTA0ODgzNTc0MSwwLjgyMjE3MjQ0NzUyMjg0NjUsLTAuNDQwNTEyODI5Njk5OTIwNAo0MCwxLjk4Mzg2MTAzMjk5NjI5NzMsMC43MzkxMjYzNTMxMjM2NTIyLDAuMTExMTA3NjQwODE5MDY2MzgsMC43MDA1MDg3NjQ4OTAxOTgKNDEsMC41MTU5NDM0NDU4MTM3ODk3LC0xLjAwMzM5NjU4NTQwNjI3MTksMC4yMjAwMjMxNTI4MDc1NjY4NywxLjA0NzgyNDA5MDg0NjU4MjEKNDIsLTEuODM5MDAzODE4MDIxMDMxNSwxLjIyNTYwMjA1MDMzNTE2MzUsLTAuNTU3NzY1NjczNTM4MTIxOCwtMC4xNzY1NTY4MjA2MTMxNDEwNAo0MywwLjk2MzUyNzIwMTAxODg1MzUsLTAuNjM2NzM4MTMxMzU5Mzg2MywxLjI5MDcwNjU5NzA0NzcwNDcsMC40OTE2MDU1MzkzMDk3NTE2CjQ0LC0wLjE0NjEzMjcwNzIxNzYzNjAyLDAuNTQ0NTMxMzQ3NzkxOTMzNywwLjMwMzc5MjkyMDU0NDY5NTUsLTAuODYzODU0ODU1MzM3NjI1Nwo0NSwwLjUxOTM1NDI5MjMxMTIxMzYsLTAuMTc1MzQ0OTA0ODMxMTM3ODIsLTAuNzIyODU4MDE4MzM0NDU5MiwwLjc0MTYxNjU2NTYyNTA4OTgKNDYsMS4wMjk0NTg3NjI3MTI3NTA1LC0wLjE2OTQ3OTAwNDUyMTczMDgsMC45ODI5ODE0NTkxOTQyNTksLTAuNjM2NTc0MzU5OTc2MTc0NQo0NywxLjE1NzkwOTUxNTEzOTUzNTMsMS4wNDk4NzEwODY4Njc2NjQ2LDAuMTExMDIyMjE3MjYzODg0NjYsLTEuMzEyMTM3MTM5NzE1OTYwNQo0OCwtMS4wMjY3NzYzMzkyMTI0MDk4LDEuNTAzODM2OTI0MjI1MDA2MywwLjEzMzc4NDcyNDk4MjU4ODg3LC0xLjA0NDk0MDUyMDUwMjg0Ngo0OSwtMC40NzUyMzc3NDMwMjYyNjkzLC0xLjc5ODg0MTgyNzc5Nzc1OTYsLTAuMTA3OTc2NzM0MTk2NTU3MTEsLTEuNDA5NTAyMTY5OTk4ODg1NAo=" target="_blank">Descargar datos</a>
 </div>
 
 </div>
 
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>IPython.core.display.HTML</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
