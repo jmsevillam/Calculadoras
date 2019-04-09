@@ -13198,7 +13198,7 @@ div#notebook {
     <span class="k">if</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span> <span class="o">&lt;</span> <span class="n">date_Ven</span><span class="o">.</span><span class="n">month</span><span class="p">:</span>
         <span class="n">date_Next</span><span class="o">=</span><span class="n">date_Next</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">today</span><span class="o">.</span><span class="n">month</span><span class="o">==</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">month</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="o">&lt;=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">month</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">today</span><span class="o">.</span><span class="n">day</span><span class="o">&lt;=</span><span class="n">date_Ven</span><span class="o">.</span><span class="n">day</span><span class="p">:</span>
             <span class="n">date_Next</span><span class="o">=</span><span class="n">date_Next</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">today</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">date_Next</span>
 
@@ -13280,6 +13280,7 @@ div#notebook {
     
     <span class="n">days_prev</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">date_prev</span><span class="p">,</span> <span class="n">today</span><span class="p">)</span>
     <span class="n">date_next</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
+    
     <span class="n">days_next</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">date_next</span><span class="p">,</span><span class="n">today</span><span class="p">)</span>
     
     <span class="n">cupon</span><span class="o">=</span><span class="n">cupon</span><span class="o">*</span><span class="mf">100.</span>
@@ -13303,7 +13304,25 @@ div#notebook {
     <span class="n">r</span><span class="o">=</span><span class="n">trunc</span><span class="p">(</span><span class="n">acum</span><span class="p">)</span>
     <span class="n">PL</span><span class="o">=</span><span class="n">trunc</span><span class="p">((</span><span class="n">r</span><span class="o">/</span><span class="mf">100.</span><span class="o">-</span><span class="n">Interes</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">PL</span>
-
+<span class="k">def</span> <span class="nf">Price</span><span class="p">(</span><span class="n">date_Ven</span><span class="p">,</span><span class="n">today</span><span class="p">,</span><span class="n">cupon</span><span class="p">,</span><span class="n">tasa</span><span class="p">):</span>
+    
+    <span class="n">date_prev</span><span class="o">=</span><span class="n">prev_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
+    <span class="n">Dias</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_prev</span><span class="p">)</span>
+    <span class="n">Interes</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">cupon</span><span class="o">*</span><span class="n">Dias</span><span class="o">/</span><span class="mf">365.</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    
+    <span class="n">acum</span><span class="o">=</span><span class="mf">0.</span>
+    
+    <span class="n">days_prev</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">date_prev</span><span class="p">,</span> <span class="n">today</span><span class="p">)</span>
+    <span class="n">date_next</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
+    
+    <span class="n">days_next</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">date_next</span><span class="p">,</span><span class="n">today</span><span class="p">)</span>
+    <span class="n">n</span><span class="o">=</span><span class="n">days_next</span><span class="o">/</span><span class="mf">365.</span>
+    
+    <span class="n">PL</span><span class="o">=</span><span class="n">cupon</span><span class="o">*</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="n">n</span><span class="p">))</span><span class="o">/</span><span class="n">tasa</span><span class="o">+</span><span class="p">(</span><span class="n">cupon</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">tasa</span><span class="p">)</span><span class="o">**</span><span class="n">n</span>
+    
+    <span class="k">return</span> <span class="n">PL</span>
+    
+    
 <span class="k">def</span> <span class="nf">Dias_Vto</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">):</span>
     <span class="n">date_Next</span><span class="o">=</span><span class="n">next_pay</span><span class="p">(</span><span class="n">today</span><span class="p">,</span><span class="n">date_Ven</span><span class="p">)</span>
     <span class="n">year</span><span class="o">=</span><span class="n">date_Next</span><span class="o">.</span><span class="n">year</span>
@@ -13492,6 +13511,21 @@ div#notebook {
     <span class="n">description</span><span class="o">=</span><span class="s1">&#39;UVR:&#39;</span><span class="p">,</span>
     <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
+<span class="c1"># nbi:hide_in</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">HTML</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="c1"># function that takes in a dataframe and creates a text link to  </span>
+<span class="c1"># download it (will only work for files &lt; 2MB or so)</span>
+<span class="k">def</span> <span class="nf">create_download_link</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Descargar datos&quot;</span><span class="p">):</span>  
+    <span class="n">csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+    <span class="n">b64</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin8&#39;</span><span class="p">))</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">b64</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="s1">&#39;&lt;a download=&quot;</span><span class="si">{filename}</span><span class="s1">&quot; href=&quot;data:text/csv;base64,</span><span class="si">{payload}</span><span class="s1">&quot; target=&quot;_blank&quot;&gt;</span><span class="si">{title}</span><span class="s1">&lt;/a&gt;&#39;</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">payload</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13503,7 +13537,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Calculadoras-(Beta)">Calculadoras (Beta)<a class="anchor-link" href="#Calculadoras-(Beta)">&#182;</a></h1><p>Mauricio Sevilla.</p>
 <p>email: <code>jsevilla@credicorpcapital.com</code></p>
-<p>08.04.2019-8</p>
+<p>09.04.2019-9</p>
 <hr>
 
 </div>
@@ -13613,7 +13647,11 @@ div#notebook {
     <span class="n">Precio_Sucio</span><span class="o">=</span><span class="n">Precio_Limpio</span><span class="o">+</span><span class="n">Intereses</span><span class="o">*</span><span class="mi">100</span>
     
     <span class="n">Valor_Giro</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="n">Valor_Nominal</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span><span class="o">*</span><span class="mi">1000</span>
-    
+    <span class="n">I1</span><span class="o">=</span><span class="n">Intereses</span>
+    <span class="n">m</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Pago_Anterior</span><span class="p">,</span><span class="n">Hoy</span><span class="p">)</span>
+    <span class="n">n</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Pago_Anterior</span><span class="p">,</span><span class="n">Pago_Siguiente</span><span class="p">)</span>
+    <span class="n">Valor_Gi</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio</span><span class="o">/</span><span class="mi">100</span><span class="o">+</span><span class="p">(</span><span class="n">I1</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
+
     <span class="n">Dias2</span><span class="p">,</span><span class="n">Pago_Anterior2</span><span class="p">,</span><span class="n">Pago_Siguiente2</span><span class="p">,</span><span class="n">Precio_Sucio2</span><span class="p">,</span><span class="n">Intereses2</span><span class="p">,</span><span class="n">Precio_Limpio2</span><span class="p">,</span><span class="n">Valor_Giro2</span><span class="p">,</span><span class="n">Duracion2</span><span class="p">,</span><span class="n">Hoy2</span><span class="o">=</span><span class="n">Calcular2</span><span class="p">(</span><span class="n">Bono</span><span class="p">,</span><span class="n">Tasa_Venta</span><span class="p">,</span><span class="n">Futuro</span><span class="p">,</span><span class="n">Nominal</span><span class="p">,</span><span class="n">Hoy</span><span class="p">)</span>
 
     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Fecha de Liquidación&quot;</span><span class="p">,</span><span class="s2">&quot;Días al vencimiento&quot;</span><span class="p">,</span><span class="s2">&quot;Vencimiento&quot;</span><span class="p">,</span><span class="s2">&quot;Pago Anterior&quot;</span><span class="p">,</span>
@@ -13635,9 +13673,21 @@ div#notebook {
     <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Descargar datos&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">n</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span>
     <span class="n">Costo_dinero</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasaFondeo</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="mf">1.</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">Diferencia_Giro</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro2</span><span class="o">-</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    
+    
+    
+    <span class="n">Precio_Limpio3</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="o">+</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">Intereses3</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">Precio_Sucio3</span><span class="o">=</span><span class="n">Precio_Limpio3</span><span class="o">+</span><span class="n">Intereses3</span><span class="o">*</span><span class="mi">100</span>
+    
+    
+    <span class="n">Valor_Giro3</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio3</span><span class="o">/</span><span class="mf">100.</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
+    <span class="n">DVO1</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro</span><span class="o">-</span><span class="n">Valor_Giro3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
     
     
     <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="mi">0</span>
@@ -13645,8 +13695,8 @@ div#notebook {
         <span class="n">Dias</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span>
         <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="p">((</span><span class="n">Valor_Giro2</span><span class="o">/</span><span class="n">Valor_Giro</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">365</span><span class="o">/</span><span class="n">Dias</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
     <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Ret_sin_Cost</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Papel de: &#39;</span><span class="p">,</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">,</span><span class="s1">&#39;Retorno sin costos&#39;</span><span class="p">]</span>
-    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Cot</span><span class="p">,</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Ret_sin_Cost</span><span class="p">]</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">,</span><span class="s1">&#39;Retorno sin costos&#39;</span><span class="p">,</span><span class="s1">&#39;DVO1&#39;</span><span class="p">]</span>
+    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Ret_sin_Cost</span><span class="p">,</span><span class="n">DVO1</span><span class="p">]</span>
 
     <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Values</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
@@ -13766,20 +13816,28 @@ div#notebook {
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="c1">#display(data)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Descargar datos&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">n</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span>
     <span class="n">Costo_dinero</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasaFondeo</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="mf">1.</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">Diferencia_Giro</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro2</span><span class="o">-</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
        
-    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">]</span>
-    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">]</span>
-
+    <span class="n">Precio_Limpio3</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Tasa</span><span class="o">+</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="n">Intereses3</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">Precio_Sucio3</span><span class="o">=</span><span class="n">Precio_Limpio3</span><span class="o">+</span><span class="n">Intereses3</span><span class="o">*</span><span class="mi">100</span>
+    
+    
+    <span class="n">Valor_Giro3</span><span class="o">=</span><span class="p">(</span><span class="n">Precio_Sucio3</span><span class="o">/</span><span class="mf">100.</span><span class="p">)</span><span class="o">*</span><span class="n">Nominal</span>
+    <span class="n">DVO1</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro</span><span class="o">-</span><span class="n">Valor_Giro3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    
+    
     <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">if</span> <span class="n">Futuro</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="n">Dias</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span>
         <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="p">((</span><span class="n">Valor_Giro2</span><span class="o">/</span><span class="n">Valor_Giro</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">365</span><span class="o">/</span><span class="n">Dias</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
     <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Ret_sin_Cost</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">,</span><span class="s1">&#39;Retorno sin costos&#39;</span><span class="p">]</span>
-    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Ret_sin_Cost</span><span class="p">]</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">,</span><span class="s1">&#39;Retorno sin costos&#39;</span><span class="p">,</span><span class="s1">&#39;DVO1&#39;</span><span class="p">]</span>
+    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Ret_sin_Cost</span><span class="p">,</span><span class="n">DVO1</span><span class="p">]</span>
 
     <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Values</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
@@ -13998,6 +14056,8 @@ div#notebook {
     <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Descargar datos&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">n</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span>
     <span class="n">Costo_dinero</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasaFondeo</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="mf">1.</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">Diferencia_Giro</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro2</span><span class="o">-</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
@@ -14007,8 +14067,8 @@ div#notebook {
         <span class="n">Dias</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span>
         <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="p">((</span><span class="n">Valor_Giro2</span><span class="o">/</span><span class="n">Valor_Giro</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">365</span><span class="o">/</span><span class="n">Dias</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
     <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Ret_sin_Cost</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Papel de: &#39;</span><span class="p">,</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">,</span><span class="s1">&#39;Retorno sin costos&#39;</span><span class="p">]</span>
-    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Cot</span><span class="p">,</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Ret_sin_Cost</span><span class="p">]</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">,</span><span class="s1">&#39;Retorno sin costos&#39;</span><span class="p">]</span>
+    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Ret_sin_Cost</span><span class="p">]</span>
 
     <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Values</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
@@ -14140,13 +14200,12 @@ div#notebook {
     <span class="n">data2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test2</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Compra&#39;</span><span class="p">,</span><span class="s1">&#39;Venta&#39;</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
     <span class="c1">#display(data)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">=</span><span class="n">create_download_link</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data.csv&quot;</span><span class="p">,</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Descargar datos&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="n">res</span><span class="o">=</span><span class="n">data2</span>
     <span class="n">n</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span>
     <span class="n">Costo_dinero</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasaFondeo</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="mf">1.</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">Diferencia_Giro</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro2</span><span class="o">-</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-       
-    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">]</span>
-    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">]</span>
 
     <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">if</span> <span class="n">Futuro</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
@@ -14327,58 +14386,6 @@ div#notebook {
 
 </div>
 
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<a download="test.csv" href="data:text/csv;base64,O076bWVybztFc3BlY2llO0VtaXNpb247VmVuY2ltaWVudG87Q3Vwb247UGFnbztDb3RpemFjafNuIE9ibGlnYXRvcmlhO1VubmFtZWQ6IDcKMDsxO1RGSVQwNjExMDkxOTsyMDEzLTA5LTExOzIwMTktMDktMTE7Ny4wMCU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQoxOzI7VEZJVDE1MjQwNzIwOzIwMDUtMDctMjQ7MjAyMC0wNy0yNDsxMS4wMCU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQoyOzM7VEZJVDEwMDQwNTIyOzIwMTItMDUtMDQ7MjAyMi0wNS0wNDs3LjAwJTsxO0NvdGl6YWNp824gT2JsaWdhdG9yaWE7VEZJCjM7NDtURklUMTYyNDA3MjQ7MjAwOC0wNy0yNDsyMDI0LTA3LTI0OzEwLjAwJTsxO0NvdGl6YWNp824gT2JsaWdhdG9yaWE7VEZJCjQ7NTtURklUMDgyNjExMjU7MjAxNy0xMS0yNjsyMDI1LTExLTI2OzYuMjUlOzE7Q290aXphY2nzbiBPYmxpZ2F0b3JpYTtURkkKNTs2O1RGSVQxNTI2MDgyNjsyMDExLTA4LTI2OzIwMjYtMDgtMjY7Ny41MCU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQo2Ozc7VEZJVDE2MjgwNDI4OzIwMTItMDQtMjg7MjAyOC0wNC0yODs2LjAwJTsxO0NvdGl6YWNp824gT2JsaWdhdG9yaWE7VEZJCjc7ODtURklUMTYxODA5MzA7MjAxNC0wOS0xODsyMDMwLTA5LTE4OzcuNzUlOzE7Q290aXphY2nzbiBPYmxpZ2F0b3JpYTtURkkKODs5O1RGSVQxNjMwMDYzMjsyMDE2LTA2LTMwOzIwMzItMDYtMzA7Ny4wMCU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQo5OzEwO1RGSVQxNjE4MTAzNDsyMDE4LTEwLTE4OzIwMzQtMTAtMTg7Ny4yNSU7MTtDb3RpemFjafNuIE9ibGlnYXRvcmlhO1RGSQo=" target="_blank">Descargar datos</a>
-</div>
-
-</div>
-
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 
