@@ -13693,6 +13693,7 @@ div#notebook {
     
 
     <span class="n">PrecioFEq</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">TasaFEq</span><span class="o">=</span><span class="mi">0</span>
     <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">if</span> <span class="n">Futuro</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="n">Dias</span><span class="o">=</span><span class="n">days</span><span class="p">(</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Hoy2</span><span class="p">)</span>
@@ -14230,7 +14231,6 @@ div#notebook {
     <span class="n">Costo_dinero</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro</span><span class="o">*</span><span class="p">((</span><span class="mf">1.</span><span class="o">+</span><span class="n">tasaFondeo</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="mf">1.</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">Diferencia_Giro</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Valor_Giro2</span><span class="o">-</span><span class="n">Valor_Giro</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">Precio_Limpio3</span><span class="o">=</span><span class="n">PLimpio</span><span class="p">(</span><span class="n">Vencimiento</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Cupon</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">Tasa</span><span class="o">+</span><span class="mf">0.0001</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-    
     
     <span class="n">Intereses3</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">interests</span><span class="p">(</span><span class="n">Cupon</span><span class="p">,</span><span class="n">Hoy</span><span class="p">,</span><span class="n">Vencimiento</span><span class="p">)</span><span class="o">/</span><span class="mf">100.</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
     <span class="n">Precio_Sucio3</span><span class="o">=</span><span class="n">Precio_Limpio3</span><span class="o">+</span><span class="n">Intereses3</span><span class="o">*</span><span class="mi">100</span>
