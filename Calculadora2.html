@@ -14344,13 +14344,6 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>test</p>
-
-</div>
-</div>
-</div>
 
   
 
@@ -14361,7 +14354,6 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nbi:hide_in</span>
-
 <span class="n">UVR_tasa</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">Calcular_Tasa_UVR</span><span class="p">,{</span><span class="s2">&quot;Bono&quot;</span><span class="p">:</span><span class="n">Nombre_UVR</span><span class="p">,</span>
                  <span class="s2">&quot;Precio_Compra&quot;</span><span class="p">:</span><span class="n">Precio_Compra_UVR</span><span class="p">,</span>
                  <span class="s2">&quot;Precio_Venta&quot;</span><span class="p">:</span><span class="n">Precio_Venta_UVR</span><span class="p">,</span>
@@ -14385,7 +14377,6 @@ div#notebook {
 <span class="n">children</span> <span class="o">=</span> <span class="p">[</span><span class="n">UVR_tasa_dis</span><span class="p">,</span><span class="n">UVR_precio_dis</span><span class="p">]</span>
 <span class="n">tab</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Tab</span><span class="p">()</span>
 <span class="n">tab</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="n">children</span>
-
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">children</span><span class="p">)):</span>
     <span class="n">tab</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">Option</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
