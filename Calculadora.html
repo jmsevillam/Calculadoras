@@ -13725,13 +13725,13 @@ div#notebook {
         <span class="n">Ret_sin_Cost</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Ret_sin_Cost</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">PrecioFEq</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">PrecioFEq</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
     <span class="c1">#Se imprime el resumen       </span>
-        
+    <span class="n">PyG</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="o">+</span><span class="n">ValorFuturo</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Costo Dinero&#39;</span><span class="p">,</span><span class="s1">&#39;Diferencia de Giro&#39;</span><span class="p">,</span><span class="s1">&#39;P&amp;G&#39;</span><span class="p">,</span><span class="s1">&#39;Retorno sin costos&#39;</span><span class="p">,</span><span class="s1">&#39;DVO1&#39;</span><span class="p">,</span><span class="s1">&#39;Precio F Eq.&#39;</span><span class="p">,</span><span class="s1">&#39;Tasa F Eq.&#39;</span><span class="p">,</span><span class="s1">&#39;Valor Futuro&#39;</span><span class="p">]</span>
-    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="n">Costo_dinero</span><span class="p">,</span>
-            <span class="n">Diferencia_Giro</span><span class="p">,</span>
-            <span class="n">Diferencia_Giro</span><span class="o">-</span><span class="n">Costo_dinero</span><span class="p">,</span>
-            <span class="n">Ret_sin_Cost</span><span class="p">,</span>
-            <span class="n">DVO1</span><span class="p">,</span>
+    <span class="n">Values</span><span class="o">=</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">Costo_dinero</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">Diferencia_Giro</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">PyG</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">Ret_sin_Cost</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">DVO1</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
             <span class="nb">round</span><span class="p">(</span><span class="n">PrecioFEq</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
             <span class="nb">round</span><span class="p">(</span><span class="n">TasaFEq</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span>
             <span class="nb">round</span><span class="p">(</span><span class="n">ValorFuturo</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
